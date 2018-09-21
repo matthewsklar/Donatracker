@@ -1,7 +1,14 @@
 package com.donatracker.a3even2odd.donatracker.models;
 
 public class Login {
+    /**
+     * The user's username
+     */
     private String username;
+
+    /**
+     * The user's password
+     */
     private String password;
 
     /* Getters and Setters */

@@ -24,5 +24,9 @@ public class WelcomeActivity extends AppCompatActivity {
      */
     public void onLoginPressed(View v) {
         Log.d("Login", "Go to login page");
+
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+
+        startActivity(loginIntent);
     }
 }
