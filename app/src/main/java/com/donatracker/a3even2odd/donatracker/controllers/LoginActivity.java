@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent mainIntent = new Intent(this, MainActivity.class);
 
             startActivity(mainIntent);
+
+            finish();
         } else {
             TextView error = (TextView) findViewById(R.id.error);
 
