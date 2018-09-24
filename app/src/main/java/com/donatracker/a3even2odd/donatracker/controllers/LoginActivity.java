@@ -3,6 +3,7 @@ package com.donatracker.a3even2odd.donatracker.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,13 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         login = new Login(username, password);
 
         if (login.verifyLogin()) {
-            Intent mainIntent = new Intent(this, MainActivity.class);
+            Log.d("Login", "Successfully logged in");
 
+            Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
 
             finish();
         } else {
-            TextView error = (TextView) findViewById(R.id.error);
+            TextView error = findViewById(R.id.error);
 
             error.setVisibility(View.VISIBLE);
         }
