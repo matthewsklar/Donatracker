@@ -70,6 +70,7 @@
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRegisterPressed"
             android:text="Register"
             tools:text="@string/action_select_register" />
     </LinearLayout>

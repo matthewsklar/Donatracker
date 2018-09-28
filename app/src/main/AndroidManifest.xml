@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".controllers.LoginActivity" />
         <activity android:name=".controllers.MainActivity" />
+        <activity android:name=".controllers.RegistrationActivity"></activity>
     </application>
 
 </manifest>

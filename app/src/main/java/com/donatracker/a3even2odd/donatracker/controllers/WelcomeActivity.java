@@ -29,4 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
         startActivity(loginIntent);
     }
+
+    public void onRegisterPressed(View v) {
+        Log.d("Registration","Go to Registation page");
+
+        Intent registrationIntent = new Intent(this, RegistrationActivity.class);
+
+        startActivity(registrationIntent);
+    }
 }
