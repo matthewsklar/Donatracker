@@ -1,4 +1,5 @@
 package com.donatracker.a3even2odd.donatracker.models;
+import java.util.HashMap;
 
 public class Login {
     /**
@@ -30,6 +31,8 @@ public class Login {
         return password;
     }
 
+    public HashMap<String, User> getUsers() { return User.getUsers(); }
+
     /**
      * Constructor for login.
      *
@@ -58,7 +61,8 @@ public class Login {
     private boolean verifyUsername() {
         // TODO: Check that username matches requirements
 
-        return username.equals("user");
+        //return username.equals("user");
+        return getUsers().containsKey(username);
     }
 
     /**
@@ -67,6 +71,8 @@ public class Login {
      * @return if the password is valid
      */
     private boolean verifyPassword() {
-        return password.equals("pass");
+        //return password.equals("pass");
+        return password.equals(getUsers().get(username).getPassword());
     }
+
 }
