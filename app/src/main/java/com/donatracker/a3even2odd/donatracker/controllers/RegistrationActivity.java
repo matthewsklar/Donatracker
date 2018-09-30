@@ -57,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
             new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
+            finish();
         }
     }
 
