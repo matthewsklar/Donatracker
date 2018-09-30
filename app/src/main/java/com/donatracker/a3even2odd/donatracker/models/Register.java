@@ -21,7 +21,7 @@ public class Register {
      * getter method for Users information
      * @return user Map
      */
-    public HashMap<String, User> getUsers() {
+    private HashMap<String, User> getUsers() {
         return User.getUsers();
     }
 
