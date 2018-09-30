@@ -57,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
             new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
+            finish();
         }
     }
 
@@ -66,8 +67,6 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param v the Button
      */
     public void onCancelPressed(View v) {
-        Intent welcomeIntent = new Intent (this, WelcomeActivity.class);
-        startActivity(welcomeIntent);
         finish();
     }
 
