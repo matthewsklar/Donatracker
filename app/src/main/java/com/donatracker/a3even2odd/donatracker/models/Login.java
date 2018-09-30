@@ -1,5 +1,7 @@
 package com.donatracker.a3even2odd.donatracker.models;
+
 import java.util.HashMap;
+
 
 public class Login {
     /**
@@ -31,7 +33,12 @@ public class Login {
         return password;
     }
 
-    public HashMap<String, User> getUsers() { return User.getUsers(); }
+    /**
+     * getter for users
+     *
+     * @return list of all users
+     */
+    private HashMap<String, User> getUsers() { return User.getUsers(); }
 
     /**
      * Constructor for login.
