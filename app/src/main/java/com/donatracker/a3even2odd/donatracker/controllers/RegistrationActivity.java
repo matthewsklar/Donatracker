@@ -67,8 +67,6 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param v the Button
      */
     public void onCancelPressed(View v) {
-        Intent welcomeIntent = new Intent (this, WelcomeActivity.class);
-        startActivity(welcomeIntent);
         finish();
     }
 
