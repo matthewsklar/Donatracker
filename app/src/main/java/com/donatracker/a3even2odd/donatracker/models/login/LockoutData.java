@@ -3,7 +3,7 @@ package com.donatracker.a3even2odd.donatracker.models.login;
 public class LockoutData {
     // TODO: Remove default values
     private int attempts = 3;
-    private int attemptReset = 1;
+    private float attemptReset = 2.0f;
     private int lockout = 3;
 
     /* Getters and Setters */
@@ -30,7 +30,7 @@ public class LockoutData {
      *
      * @return attemptReset
      */
-    public int getAttemptReset() {
+    public float getAttemptReset() {
         return attemptReset;
     }
 
@@ -39,7 +39,7 @@ public class LockoutData {
      *
      * @param attemptReset the amount of minutes after an attempt the counter resets at
      */
-    public void setAttemptReset(int attemptReset) {
+    public void setAttemptReset(float attemptReset) {
         this.attemptReset = attemptReset;
     }
 

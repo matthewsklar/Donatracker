@@ -91,7 +91,8 @@ public class Login {
         timer = new Timer();
 
         // TODO: Replace this with destroying no longer used timers
-        timer.schedule(resetAttempt(loginSingleton.getLoginAttempts()), 10000);
+        timer.schedule(resetAttempt(loginSingleton.getLoginAttempts()),
+                (int) (loginSingleton.getLockoutData().getAttemptReset() * 60 * 1000));
     }
 
     /**
