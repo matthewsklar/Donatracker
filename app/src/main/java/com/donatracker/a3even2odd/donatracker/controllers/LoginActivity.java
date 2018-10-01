@@ -9,9 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.Login;
-
-import org.w3c.dom.Text;
+import com.donatracker.a3even2odd.donatracker.models.login.Login;
 
 public class LoginActivity extends AppCompatActivity {
     /**
@@ -38,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (login.verifyLogin()) {
             Log.d("Login", "Successfully logged in");
-
+            //Log.d("Hellotheredude", login.test());
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
 

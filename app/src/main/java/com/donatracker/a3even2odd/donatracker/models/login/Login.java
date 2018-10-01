@@ -1,4 +1,6 @@
-package com.donatracker.a3even2odd.donatracker.models;
+package com.donatracker.a3even2odd.donatracker.models.login;
+
+import android.util.Log;
 
 public class Login {
     /**
@@ -11,11 +13,16 @@ public class Login {
      */
     private String password;
 
+    /**
+     * Global instance of LoginSingleton containing data about login.
+     */
+    private LoginSingleton loginSingleton;
+
     /* Getters and Setters */
     /**
      * Getter for username.
      *
-     * @return the username
+     * @return username
      */
     public String getUsername() {
         return username;
@@ -24,10 +31,18 @@ public class Login {
     /**
      * Getter for password.
      *
-     * @return the password
+     * @return password
      */
     public String getPassword() {
         return password;
+    }
+
+    // TODO: Remove
+    public String test() {
+        //return Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttemptReset());
+        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
+        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
+        return "hi";
     }
 
     /**
@@ -39,6 +54,8 @@ public class Login {
     public Login(String username, String password) {
         this.username = username;
         this.password = password;
+
+        loginSingleton = LoginSingleton.getInstance();
     }
 
     /**
@@ -47,7 +64,19 @@ public class Login {
      * @return if the login information matches a preexisting account
      */
     public boolean verifyLogin() {
-        return verifyUsername() && verifyPassword();
+        boolean successfulLogin =
+                loginSingleton.getLoginAttempts() <= loginSingleton.getLockoutData().getAttempts()
+                        && verifyUsername() && verifyPassword();
+
+        if (successfulLogin) {
+            loginSingleton.setLoginAttempts(0);
+
+            return true;
+        }
+
+        loginSingleton.setLoginAttempts(loginSingleton.getLoginAttempts() + 1);
+
+        return false;
     }
 
     /**
