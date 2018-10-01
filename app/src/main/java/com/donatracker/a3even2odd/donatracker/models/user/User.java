@@ -1,4 +1,4 @@
-package com.donatracker.a3even2odd.donatracker.models;
+package com.donatracker.a3even2odd.donatracker.models.user;
 
 import java.util.HashMap;
 
