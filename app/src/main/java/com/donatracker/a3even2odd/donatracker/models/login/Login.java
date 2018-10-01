@@ -2,6 +2,9 @@ package com.donatracker.a3even2odd.donatracker.models.login;
 
 import android.util.Log;
 
+import com.donatracker.a3even2odd.donatracker.models.user.User;
+
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,6 +23,11 @@ public class Login {
      * The user's password
      */
     private String password;
+
+    /**
+     * Map of all users and their accounts
+     */
+    private HashMap<String, User> users;
 
     /**
      * Timer to call methods at designated times.
@@ -44,6 +52,13 @@ public class Login {
     public String getPassword() {
         return password;
     }
+
+    /**
+     * Getter for users
+     *
+     * @return list of all users
+     */
+    public HashMap<String, User> getUsers() { return User.getUsers(); }
 
     // TODO: Remove
     public String test() {
@@ -106,7 +121,7 @@ public class Login {
     private boolean verifyUsername() {
         // TODO: Check that username matches requirements
 
-        return username.equals("user");
+        return getUsers().containsKey(username);
     }
 
     /**
@@ -115,7 +130,7 @@ public class Login {
      * @return if the password is valid
      */
     private boolean verifyPassword() {
-        return password.equals("pass");
+        return password.equals(getUsers().get(username).getPassword());
     }
 
     /**
