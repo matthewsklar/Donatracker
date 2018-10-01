@@ -2,7 +2,15 @@ package com.donatracker.a3even2odd.donatracker.models.login;
 
 import android.util.Log;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Login {
+    /**
+     * Global instance of LoginSingleton containing data about login.
+     */
+    private LoginSingleton loginSingleton;
+
     /**
      * The user's username
      */
@@ -14,9 +22,9 @@ public class Login {
     private String password;
 
     /**
-     * Global instance of LoginSingleton containing data about login.
+     * Timer to call methods at designated times.
      */
-    private LoginSingleton loginSingleton;
+    private Timer timer;
 
     /* Getters and Setters */
     /**
@@ -52,10 +60,23 @@ public class Login {
      * @param password the password
      */
     public Login(String username, String password) {
+        loginSingleton = LoginSingleton.getInstance();
+
         this.username = username;
         this.password = password;
 
-        loginSingleton = LoginSingleton.getInstance();
+        timer = new Timer();
+    }
+
+    /**
+     * Reset the reset attempts counter
+     */
+    public void handleResetAttemptCounter() {
+        timer.cancel();
+        timer = new Timer();
+
+        // TODO: Replace this with destroying no longer used timers
+        timer.schedule(resetAttempt(loginSingleton.getLoginAttempts()), 10000);
     }
 
     /**
@@ -64,9 +85,7 @@ public class Login {
      * @return if the login information matches a preexisting account
      */
     public boolean verifyLogin() {
-        boolean successfulLogin =
-                loginSingleton.getLoginAttempts() <= loginSingleton.getLockoutData().getAttempts()
-                        && verifyUsername() && verifyPassword();
+        boolean successfulLogin = !lockout() && verifyUsername() && verifyPassword();
 
         if (successfulLogin) {
             loginSingleton.setLoginAttempts(0);
@@ -97,5 +116,38 @@ public class Login {
      */
     private boolean verifyPassword() {
         return password.equals("pass");
+    }
+
+    /**
+     * Determine if the user is currently locked out.
+     *
+     * A user is locked out if the amount of login attempts is greater than the max allowed.
+     *
+     * @return if the user is locked out.
+     */
+    private boolean lockout() {
+        return loginSingleton.getLoginAttempts() > loginSingleton.getLockoutData().getAttempts();
+    }
+
+    /**
+     * Create a TimerTask that resets the current login attempt counter.
+     *
+     * @return an instance of the TimerTask
+     */
+    private TimerTask resetAttempt(final int attempt) {
+        return new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    if (attempt == loginSingleton.getLoginAttempts()) {
+                        loginSingleton.setLoginAttempts(0);
+
+                        Log.d("Login", "Reset login attempts");
+                    }
+                } catch (Exception e) {
+                    Log.e("Login", "Failed to reset attempt\n\t" + e.getMessage());
+                }
+            }
+        };
     }
 }

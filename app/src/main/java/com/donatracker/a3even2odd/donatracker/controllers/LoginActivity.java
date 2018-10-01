@@ -1,8 +1,8 @@
 package com.donatracker.a3even2odd.donatracker.controllers;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -10,17 +10,20 @@ import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.login.Login;
+import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
 
 public class LoginActivity extends AppCompatActivity {
     /**
-     * The login handler
+     * Global instance of LoginSingleton containing data about login.
      */
-    private Login login;
+    private LoginSingleton loginSingleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loginSingleton = LoginSingleton.getInstance();
     }
 
     /**
@@ -32,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = ((EditText) findViewById(R.id.username)).getText().toString();
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        login = new Login(username, password);
+        Login login = new Login(username, password);
 
         if (login.verifyLogin()) {
             Log.d("Login", "Successfully logged in");
@@ -42,6 +45,11 @@ public class LoginActivity extends AppCompatActivity {
 
             finish();
         } else {
+            Log.d("Login", "User failed to login for the " +
+                    loginSingleton.getLoginAttempts() + " time.");
+
+            login.handleResetAttemptCounter();
+
             TextView error = findViewById(R.id.error);
 
             error.setVisibility(View.VISIBLE);

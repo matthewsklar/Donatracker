@@ -49,6 +49,9 @@ public class LoginSingleton {
         return lockoutData;
     }
 
+    /**
+     * Constructor for LoginSingleton
+     */
     private LoginSingleton() {
         lockoutData = new LockoutData();
 
