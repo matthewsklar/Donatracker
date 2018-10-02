@@ -7,11 +7,11 @@ package com.donatracker.a3even2odd.donatracker.models.parser;
  * @version 1.0
  * @since 1.0
  */
-public abstract class Parser {
+public abstract class Parser<E> {
     /**
      * Path to the location of the file to parse.
      */
-    private String loc;
+    protected String loc;
 
     /**
      * Constructor for Parser
@@ -27,7 +27,7 @@ public abstract class Parser {
      *
      * @return the contents of the file at loc
      */
-    public String getFile() {
+    protected String getFile() {
         // TODO: Implement this class
         return "TODO: IMPLEMENT THIS";
     }
