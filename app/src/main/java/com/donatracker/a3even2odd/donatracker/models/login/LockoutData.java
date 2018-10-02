@@ -1,5 +1,12 @@
 package com.donatracker.a3even2odd.donatracker.models.login;
 
+/**
+ * Store data about locking out users during sign in.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class LockoutData {
     // TODO: Remove default values
     private int attempts = 3;

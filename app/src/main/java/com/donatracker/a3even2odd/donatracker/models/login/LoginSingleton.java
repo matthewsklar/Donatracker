@@ -4,6 +4,13 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 
+/**
+ * Store global data related to logging in.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class LoginSingleton {
     private static final LoginSingleton ourInstance = new LoginSingleton();
 
