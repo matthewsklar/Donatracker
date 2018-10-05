@@ -3,19 +3,16 @@ package com.donatracker.a3even2odd.donatracker.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.Register;
-import com.donatracker.a3even2odd.donatracker.models.User;
-import com.donatracker.a3even2odd.donatracker.models.UserTypes;
+import com.donatracker.a3even2odd.donatracker.models.register.Register;
+import com.donatracker.a3even2odd.donatracker.models.user.User;
+import com.donatracker.a3even2odd.donatracker.models.user.UserTypes;
 
 public class RegistrationActivity extends AppCompatActivity {
 

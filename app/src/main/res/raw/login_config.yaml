@@ -1,0 +1,4 @@
+login:
+  attempts: 3         # Amount of incorrect login attempts before locking user out
+  attempt_reset: 3    # Amount of minutes after an attempt that the attempts counter resets
+  lockout: 3          # Amount of minutes a user is locked out for
