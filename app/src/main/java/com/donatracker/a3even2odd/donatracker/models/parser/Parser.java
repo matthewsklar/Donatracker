@@ -1,5 +1,8 @@
 package com.donatracker.a3even2odd.donatracker.models.parser;
 
+import java.io.InputStream;
+import java.util.List;
+
 /**
  * Abstract class for parsers.
  *
@@ -11,29 +14,54 @@ public abstract class Parser<E> {
     /**
      * Path to the location of the file to parse.
      */
-    protected String loc;
+    private String loc;
 
     /**
-     * Constructor for Parser
-     *
-     * @param loc path to the location of the file to parse
+     * Input stream containing the file at loc.
      */
-    public Parser(String loc) {
-        this.loc = loc;
+    private InputStream inputStream;
+
+    /* Getters and Setters */
+    /**
+     * Getter for loc.
+     *
+     * @return getLoc
+     */
+    String getLoc() {
+        return loc;
     }
 
     /**
-     * Get the file and store its contents as a String.
+     * Getter for inputStream.
      *
-     * @return the contents of the file at loc
+     * @return inputStream
      */
-    protected String getFile() {
-        // TODO: Implement this class
-        return "TODO: IMPLEMENT THIS";
+    InputStream getInputStream() {
+        return inputStream;
+    }
+
+    /**
+     * Constructor for Parser.
+     *
+     * @param inputStream input stream containing the file at loc
+     */
+    public Parser(InputStream inputStream) {
+        this("", inputStream);
+    }
+
+    /**
+     * Constructor for Parser.
+     *
+     * @param loc path to the location of the file to parse
+     * @param inputStream input stream containing the file at loc
+     */
+    public Parser(String loc, InputStream inputStream) {
+        this.loc = loc;
+        this.inputStream = inputStream;
     }
 
     /**
      * Parse the file into a data class.
      */
-    public abstract void Parse();
+    public abstract List<E> Parse();
 }
