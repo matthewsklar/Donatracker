@@ -100,22 +100,4 @@ public class StringEncryption {
     }
 
 
-
-    public static void main(String[] args) {
-
-        String salt = generateSalt(30);
-
-        String s1 = "password";
-        String s2 = "password";
-        String s3 = "PASSWORD";
-        String s4 = "password1";
-
-        System.out.println(secure(s1, salt));
-        System.out.println(verify(s2, s1, salt));
-        System.out.println(verify(s2, s1, salt));
-        System.out.println(verify(s3, s1, salt));
-        System.out.println(verify(s4, s1, salt));
-    }
-
-
 }
