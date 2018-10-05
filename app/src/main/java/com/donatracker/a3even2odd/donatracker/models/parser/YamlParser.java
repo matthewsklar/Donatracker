@@ -5,6 +5,7 @@ import com.donatracker.a3even2odd.donatracker.models.login.LockoutData;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Parse YAML files and store data in data class.
@@ -17,22 +18,23 @@ public class YamlParser extends Parser {
     /**
      * Constructor for Parser
      *
-     * @param loc path to the location of the file to parse
+     * @param loc         path to the location of the file to parse
+     * @param inputStream input stream containing the file at loc
      */
-    public YamlParser(String loc) {
-        super(loc);
+    public YamlParser(String loc, InputStream inputStream) {
+        super(loc, inputStream);
     }
 
     /**
      * Parse the file into a data class.
      */
     @Override
-    public void Parse() {
+    public List Parse() {
         Yaml yaml = new Yaml();
 
         InputStream inputStream = this.getClass()
                 .getClassLoader()
-                .getResourceAsStream(loc);
+                .getResourceAsStream(getLoc());
 
         /*FileInputStream inputStream;
 
@@ -48,5 +50,7 @@ public class YamlParser extends Parser {
         /*Yaml yaml = new Yaml();
         String document = "\n- Hesperiidae\n- Papilionidae\n- Apatelodidae\n- Epiplemidae";
         List<String> list = (List<String>) yaml.load(document);*/
+
+        return null;
     }
 }
