@@ -1,5 +1,9 @@
 package com.donatracker.a3even2odd.donatracker.models.login;
 
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.InputStream;
+
 /**
  * Store global data related to logging in.
  *
@@ -59,5 +63,33 @@ public class LoginSingleton {
         lockoutData = new LockoutData();
 
         //loadYaml("../configs/login_config.yaml");
+    }
+
+    /**
+     * Load the YAML config and store it in a LockoutData object
+     *
+     * @param loc the location of the YAML file
+     */
+    public void loadYaml(String loc) {
+        Yaml yaml = new Yaml();
+
+        InputStream inputStream = this.getClass()
+                .getClassLoader()
+                .getResourceAsStream(loc);
+
+        /*FileInputStream inputStream;
+
+        try {
+            inputStream = new FileInputStream(loc);
+        } catch (java.io.FileNotFoundException e) {
+            inputStream = null;
+        }*/
+
+        //this.lockoutData = inputStream;
+        lockoutData = (LockoutData) yaml.load(inputStream);
+
+        /*Yaml yaml = new Yaml();
+        String document = "\n- Hesperiidae\n- Papilionidae\n- Apatelodidae\n- Epiplemidae";
+        List<String> list = (List<String>) yaml.load(document);*/
     }
 }
