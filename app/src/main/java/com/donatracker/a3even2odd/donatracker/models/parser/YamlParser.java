@@ -1,11 +1,14 @@
 package com.donatracker.a3even2odd.donatracker.models.parser;
 
-import com.donatracker.a3even2odd.donatracker.models.login.LockoutData;
+import android.util.Log;
 
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Parse YAML files and store data in data class.
@@ -18,39 +21,30 @@ public class YamlParser extends Parser {
     /**
      * Constructor for Parser
      *
-     * @param loc         path to the location of the file to parse
      * @param inputStream input stream containing the file at loc
      */
-    public YamlParser(String loc, InputStream inputStream) {
-        super(loc, inputStream);
+    public YamlParser(InputStream inputStream) {
+        super(inputStream);
     }
 
+    // TODO: Rewrite these comments
     /**
      * Parse the file into a data class.
      */
     @Override
-    public List Parse() {
+    public List<Float> Parse() {
         Yaml yaml = new Yaml();
 
-        InputStream inputStream = this.getClass()
-                .getClassLoader()
-                .getResourceAsStream(getLoc());
+        InputStream inputStream = getInputStream();
 
-        /*FileInputStream inputStream;
+        LinkedHashMap data = (LinkedHashMap) yaml.load(inputStream);
 
-        try {
-            inputStream = new FileInputStream(loc);
-        } catch (java.io.FileNotFoundException e) {
-            inputStream = null;
-        }*/
+        List<Float> valList = new ArrayList<>();
 
-        //this.lockoutData = inputStream;
-        //lockoutData = (LockoutData) yaml.load(inputStream);
+        for (Object o : data.values()) {
+            valList.add((float) Math.round((double) o));
+        }
 
-        /*Yaml yaml = new Yaml();
-        String document = "\n- Hesperiidae\n- Papilionidae\n- Apatelodidae\n- Epiplemidae";
-        List<String> list = (List<String>) yaml.load(document);*/
-
-        return null;
+        return valList;
     }
 }
