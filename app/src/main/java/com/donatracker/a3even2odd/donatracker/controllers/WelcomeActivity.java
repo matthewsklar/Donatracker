@@ -7,12 +7,32 @@ import android.util.Log;
 import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
+import com.donatracker.a3even2odd.donatracker.models.parser.YamlParser;
+
+import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        // TODO: Maybe move this
+        loadConfigs();
+    }
+
+    /**
+     * Load config files.
+     */
+    private void loadConfigs() {
+        InputStream inputStream = getResources().openRawResource(R.raw.login_config);
+        YamlParser parseLogin = new YamlParser(inputStream);
+        List<Float> configList = parseLogin.Parse();
+
+        LoginSingleton.getInstance().setLockoutData(configList);
     }
 
     /**
