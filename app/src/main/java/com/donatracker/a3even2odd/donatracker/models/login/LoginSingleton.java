@@ -1,8 +1,7 @@
 package com.donatracker.a3even2odd.donatracker.models.login;
 
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Store global data related to logging in.
@@ -41,7 +40,7 @@ public class LoginSingleton {
     /**
      * Setter for loginAttempts.
      *
-     * @param loginAttempts
+     * @param loginAttempts set loginAttempts
      */
     public void setLoginAttempts(int loginAttempts) {
         this.loginAttempts = loginAttempts;
@@ -57,39 +56,22 @@ public class LoginSingleton {
     }
 
     /**
+     * Setter for lockoutData.
+     *
+     * Set the data in lockout data to the correct value in the List lockoutData.
+     *
+     * @param lockoutData data that should be added to lockoutData
+     */
+    public void setLockoutData(List<Float> lockoutData) {
+        this.lockoutData.setAttempts(Math.round(lockoutData.get(0)));
+        this.lockoutData.setAttemptReset(lockoutData.get(1));
+        this.lockoutData.setLockout(Math.round(lockoutData.get(2)));
+    }
+
+    /**
      * Constructor for LoginSingleton
      */
     private LoginSingleton() {
         lockoutData = new LockoutData();
-
-        //loadYaml("../configs/login_config.yaml");
-    }
-
-    /**
-     * Load the YAML config and store it in a LockoutData object
-     *
-     * @param loc the location of the YAML file
-     */
-    public void loadYaml(String loc) {
-        Yaml yaml = new Yaml();
-
-        InputStream inputStream = this.getClass()
-                .getClassLoader()
-                .getResourceAsStream(loc);
-
-        /*FileInputStream inputStream;
-
-        try {
-            inputStream = new FileInputStream(loc);
-        } catch (java.io.FileNotFoundException e) {
-            inputStream = null;
-        }*/
-
-        //this.lockoutData = inputStream;
-        lockoutData = (LockoutData) yaml.load(inputStream);
-
-        /*Yaml yaml = new Yaml();
-        String document = "\n- Hesperiidae\n- Papilionidae\n- Apatelodidae\n- Epiplemidae";
-        List<String> list = (List<String>) yaml.load(document);*/
     }
 }
