@@ -13,6 +13,19 @@ import java.io.InputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static List locList;
+
+    private static String[] arr;
+
+    public static List getLocList() {
+        return locList;
+    }
+
+    public static String[] getArr() {
+        return arr;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private void loadLocation() {
         InputStream inputStream = getResources().openRawResource(R.raw.location_data);
         CsvParser csvParser = new CsvParser(inputStream);
-        List locList = csvParser.Parse();
+        locList = csvParser.Parse();
 
-        String[] arr = (String[]) locList.get(0);
+        arr = (String[]) locList.get(0);
 
         Log.d("location_data", arr[0]);
     }
@@ -44,5 +57,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Logout", "Successfully logged out");
 
         finish();
+    }
+
+    /**
+     * Handler for Locations Button/
+     *
+     * @param v the button
+     */
+    public void onLocationsPressed(View v) {
+        Intent locationListIntent = new Intent(this, LocationListActivity.class);
+
+        startActivity(locationListIntent);
+
     }
 }
