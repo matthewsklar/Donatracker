@@ -16,14 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static List locList;
 
-    private static String[] arr;
-
     public static List getLocList() {
         return locList;
-    }
-
-    public static String[] getArr() {
-        return arr;
     }
 
     @Override
@@ -39,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         CsvParser csvParser = new CsvParser(inputStream);
         locList = csvParser.Parse();
 
-        arr = (String[]) locList.get(0);
+        String[] arr = (String[]) locList.get(0);
 
         Log.d("location_data", arr[0]);
     }
