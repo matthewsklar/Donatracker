@@ -8,17 +8,12 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.parser.CsvParser;
+import com.donatracker.a3even2odd.donatracker.models.user.Locations;
 
 import java.io.InputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static List locList;
-
-    public static List getLocList() {
-        return locList;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
     private void loadLocation() {
         InputStream inputStream = getResources().openRawResource(R.raw.location_data);
         CsvParser csvParser = new CsvParser(inputStream);
-        locList = csvParser.Parse();
+        List locList = csvParser.Parse();
 
         String[] arr = (String[]) locList.get(0);
 
         Log.d("location_data", arr[0]);
+        for(int i = 1; i < locList.size(); i++) {
+            if (locList.get(i) != null) {
+                new Locations(((String[]) locList.get(i))[1], (String[])locList.get(i));
+            }
+        }
     }
 
     /**
