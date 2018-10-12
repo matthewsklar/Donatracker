@@ -23,73 +23,71 @@ import java.util.List;
 
 public class LocationListActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_list_content);
-        //recyclerView = findViewById(R.id.list_of_locations);
-        //recyclerView.findViewById(R.id.list_of_locations);
-        //assert recyclerView != null;
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity_location_list, null);
-        RecyclerView recyclerView1 = (RecyclerView)view.findViewById(R.id.list_of_locations);
+        setContentView(R.layout.activity_location_list);
+        View recyclerView = findViewById(R.id.list_of_locations);
+        assert recyclerView != null;
 
-
-        setupRecyclerView((RecyclerView) recyclerView1);
+        setupRecyclerView((RecyclerView) recyclerView);
 
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        Log.d("location_data", "setupRecyclerView ran");
+        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(Locations.getLocList());
+        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(Locations.getLocList());
-        //Log.d("location_data", "" + Locations.getLocList().size());
-        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
     }
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-        private List locList;
+        private final List<Locations> locList;
 
-        public RecyclerViewAdapter(List locations) {
-
+        public RecyclerViewAdapter(List<Locations> locations) {
+            Log.d("location_data", "Adapter constructor " + locations.get(1).toString());
             locList = locations;
         }
 
+        @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            Log.d("location_data", "CreateViewHolder ran");
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.location_list_content, parent, false);
+            Log.d("location_data", "view" + view.toString());
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-
+        public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+            Log.d("location_data", "onBindViewHolder ran " + position);
             holder.location = (Locations)locList.get(position);
 
             holder.idView.setText("" + (position + 1));
             holder.contentView.setText(((Locations)locList.get(position)).getName());
-            /*holder.view.setOnClickListener(new View.OnClickListener() {
+            holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationDetailActivity.class);
-                    intent.putExtra(
+
 
                     startActivity(intent);
                 }
-            });*/
+            });
 
         }
+
+        @Override
         public int getItemCount() {
             Log.d("location_data", "getItemCount" + locList.size());
-            return locList.size();
+            //return locList.size();
+            return 6;
         }
 
 
@@ -105,6 +103,7 @@ public class LocationListActivity extends AppCompatActivity {
                 this.view = view;
                 idView = (TextView) view.findViewById(R.id.id);
                 contentView = (TextView) view.findViewById(R.id.content);
+                Log.d("location_data", "ViewHolder constructor ran /n" + idView.getText());
             }
 
             @Override

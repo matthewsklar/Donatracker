@@ -6,9 +6,9 @@ import java.util.List;
 public class Locations {
     private String name;
     private String[] data;
-    private static ArrayList<Locations> locList = new ArrayList<>();
+    private static List<Locations> locList = new ArrayList<>();
 
-    public static ArrayList<Locations> getLocList() {
+    public static List<Locations> getLocList() {
         return locList;
     }
 
@@ -20,6 +20,10 @@ public class Locations {
         this.name = name;
         data = locData;
         locList.add(this);
+    }
+
+    public String toString() {
+        return data.toString();
     }
 
 }
