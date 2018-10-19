@@ -8,6 +8,13 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Handle login protocols.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class Login {
     /**
      * Global instance of LoginSingleton containing data about login.
@@ -59,14 +66,6 @@ public class Login {
      * @return list of all users
      */
     public HashMap<String, User> getUsers() { return User.getUsers(); }
-
-    // TODO: Remove
-    public String test() {
-        //return Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttemptReset());
-        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
-        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
-        return "hi";
-    }
 
     /**
      * Constructor for login.
