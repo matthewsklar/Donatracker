@@ -16,6 +16,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static boolean var = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +27,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadLocation() {
-        InputStream inputStream = getResources().openRawResource(R.raw.location_data);
-        CsvParser csvParser = new CsvParser(inputStream);
-        List locList = csvParser.Parse();
+        if (var) {
+            InputStream inputStream = getResources().openRawResource(R.raw.location_data);
+            CsvParser csvParser = new CsvParser(inputStream);
+            List locList = csvParser.Parse();
 
-        String[] arr = (String[]) locList.get(0);
+            String[] arr = (String[]) locList.get(0);
 
-        Log.d("location_data", arr[0]);
-        for(int i = 1; i < locList.size(); i++) {
-            if (locList.get(i) != null) {
-                new Locations(((String[]) locList.get(i))[1], (String[])locList.get(i));
+            Log.d("location_data", arr[0]);
+            for (int i = 1; i < locList.size(); i++) {
+                if (locList.get(i) != null) {
+                    new Locations(((String[]) locList.get(i))[1], (String[]) locList.get(i));
+                }
             }
+            var = false;
         }
     }
 
