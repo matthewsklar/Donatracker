@@ -2,7 +2,6 @@ package com.donatracker.a3even2odd.donatracker.models.user;
 
 import java.util.HashMap;
 
-
 public class User {
     /**
      * the Id of the user. currently saved as the username
