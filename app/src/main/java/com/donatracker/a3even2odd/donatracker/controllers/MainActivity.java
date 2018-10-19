@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.parser.CsvParser;
-import com.donatracker.a3even2odd.donatracker.models.user.Locations;
+import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.io.InputStream;
 import java.util.List;

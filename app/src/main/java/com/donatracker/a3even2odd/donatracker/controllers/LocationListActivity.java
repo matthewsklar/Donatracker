@@ -3,8 +3,6 @@ package com.donatracker.a3even2odd.donatracker.controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.user.Locations;
+import com.donatracker.a3even2odd.donatracker.models.location.LocationDetailFragment;
+import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocationListActivity extends AppCompatActivity {
@@ -75,9 +73,9 @@ public class LocationListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationDetailActivity.class);
+                    intent.putExtra(LocationDetailFragment.ARG_LOCATION_ID, holder.location.getLocationId());
 
-
-                    startActivity(intent);
+                    context.startActivity(intent);
                 }
             });
 
@@ -86,8 +84,7 @@ public class LocationListActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             Log.d("location_data", "getItemCount" + locList.size());
-            //return locList.size();
-            return 6;
+            return locList.size();
         }
 
 
