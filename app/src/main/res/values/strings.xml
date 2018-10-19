@@ -18,5 +18,7 @@
     <string name="action_select_register">Register</string>
     <string name="title_activity_login">Sign in</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_location_detail_test">location_detail_test</string>
+    <string name="welcome">Welcome to Donatracker</string>
+    <string name="error_incorrect_login">Username or password is incorrect</string>
+    <string name="lockout">No login attempts left. Wait up to %d minutes.</string>
 </resources>

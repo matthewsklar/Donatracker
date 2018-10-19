@@ -9,9 +9,9 @@ package com.donatracker.a3even2odd.donatracker.models.login;
  */
 public class LockoutData {
     // TODO: Remove default values
-    private int attempts = 3;
-    private float attemptReset = 2.0f;
-    private int lockout = 3;
+    private int attempts;
+    private float attemptReset;
+    private int lockout;
 
     /* Getters and Setters */
     /**

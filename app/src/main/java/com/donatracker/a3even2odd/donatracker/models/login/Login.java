@@ -95,6 +95,17 @@ public class Login {
     }
 
     /**
+     * Determine if the user is currently locked out.
+     *
+     * A user is locked out if the amount of login attempts is greater than the max allowed.
+     *
+     * @return if the user is locked out.
+     */
+    public boolean lockout() {
+        return loginSingleton.getLoginAttempts() > loginSingleton.getLockoutData().getAttempts();
+    }
+
+    /**
      * Verify that the login information is correct.
      *
      * @return if the login information matches a preexisting account
@@ -131,17 +142,6 @@ public class Login {
      */
     private boolean verifyPassword() {
         return password.equals(getUsers().get(username).getPassword());
-    }
-
-    /**
-     * Determine if the user is currently locked out.
-     *
-     * A user is locked out if the amount of login attempts is greater than the max allowed.
-     *
-     * @return if the user is locked out.
-     */
-    private boolean lockout() {
-        return loginSingleton.getLoginAttempts() > loginSingleton.getLockoutData().getAttempts();
     }
 
     /**
