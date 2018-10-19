@@ -8,6 +8,13 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Handle login protocols.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class Login {
     /**
      * Global instance of LoginSingleton containing data about login.
@@ -60,14 +67,6 @@ public class Login {
      */
     public HashMap<String, User> getUsers() { return User.getUsers(); }
 
-    // TODO: Remove
-    public String test() {
-        //return Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttemptReset());
-        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
-        //Log.d("HelloBye", Integer.toString(LoginSingleton.getInstance().getLockoutData().getAttempts()));
-        return "hi";
-    }
-
     /**
      * Constructor for login.
      *
@@ -93,6 +92,17 @@ public class Login {
         // TODO: Replace this with destroying no longer used timers
         timer.schedule(resetAttempt(loginSingleton.getLoginAttempts()),
                 (int) (loginSingleton.getLockoutData().getAttemptReset() * 60 * 1000));
+    }
+
+    /**
+     * Determine if the user is currently locked out.
+     *
+     * A user is locked out if the amount of login attempts is greater than the max allowed.
+     *
+     * @return if the user is locked out.
+     */
+    public boolean lockout() {
+        return loginSingleton.getLoginAttempts() > loginSingleton.getLockoutData().getAttempts();
     }
 
     /**
@@ -132,17 +142,6 @@ public class Login {
      */
     private boolean verifyPassword() {
         return password.equals(getUsers().get(username).getPassword());
-    }
-
-    /**
-     * Determine if the user is currently locked out.
-     *
-     * A user is locked out if the amount of login attempts is greater than the max allowed.
-     *
-     * @return if the user is locked out.
-     */
-    private boolean lockout() {
-        return loginSingleton.getLoginAttempts() > loginSingleton.getLockoutData().getAttempts();
     }
 
     /**
