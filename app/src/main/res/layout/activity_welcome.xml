@@ -39,7 +39,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@string/welcome" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -47,7 +48,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="230dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -59,19 +60,29 @@
 
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorButtonLogin"
+            android:fontFamily="sans-serif"
             android:onClick="onLoginPressed"
             android:text="Login"
-            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             tools:text="@string/action_select_login" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="14dp" />
 
         <Button
             android:id="@+id/registerButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorButtonLogin"
             android:onClick="onRegisterPressed"
             android:text="Register"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             tools:text="@string/action_select_register" />
     </LinearLayout>
 
