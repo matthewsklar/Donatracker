@@ -67,6 +67,7 @@ public class LocationDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.location_detail, container, false);
+        Log.d("Detail", "View created");
 
         // Set the adapter
         /*if (view instanceof RecyclerView) {
@@ -81,6 +82,8 @@ public class LocationDetailFragment extends Fragment {
         }
         */
         if (location != null) {
+            Log.d("Detail", "Location non null");
+            Log.d("Detail", "locatoin" + location.getAddress());
             ((TextView) view.findViewById(R.id.location_name)).setText(location.getName());
             ((TextView) view.findViewById(R.id.location_type)).setText(location.getData()[8]);
             ((TextView) view.findViewById(R.id.location_long)).setText(location.getData()[3]);

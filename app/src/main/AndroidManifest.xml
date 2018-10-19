@@ -26,6 +26,10 @@
         <activity android:name=".controllers.RegistrationActivity" />
         <activity android:name=".controllers.LocationListActivity" />
         <activity android:name=".controllers.LocationDetailActivity" />
+        <activity
+            android:name=".location_detail_test"
+            android:label="@string/title_activity_location_detail_test" />
+        <activity android:name=".LocationDetailTest" />
     </application>
 
 </manifest>

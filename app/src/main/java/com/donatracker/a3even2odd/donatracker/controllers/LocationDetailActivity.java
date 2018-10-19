@@ -16,7 +16,8 @@ public class LocationDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_detail);
+        //i changed this
+        setContentView(R.layout.location_detail);
 
 
 
@@ -31,7 +32,8 @@ public class LocationDetailActivity extends AppCompatActivity {
             LocationDetailFragment fragment = new LocationDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.magic, fragment)
+                    //change back to magic
+                    .replace(R.id.layout_location, fragment)
                     .commit();
 
         }

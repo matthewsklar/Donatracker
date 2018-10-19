@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.location.LocationDetailFragment;
 import com.donatracker.a3even2odd.donatracker.models.parser.CsvParser;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
