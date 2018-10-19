@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (login.verifyLogin()) {
             Log.d("Login", "Successfully logged in");
-            //Log.d("Hellotheredude", login.test());
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
 
@@ -51,6 +50,14 @@ public class LoginActivity extends AppCompatActivity {
             login.handleResetAttemptCounter();
 
             TextView error = findViewById(R.id.error);
+
+            if (login.lockout()) {
+                error.setText(getString(R.string.lockout,
+                        Math.round((loginSingleton.getLoginAttempts() - 3) *
+                                loginSingleton.getLockoutData().getAttemptReset())));
+            } else {
+                error.setText(R.string.error_incorrect_login);
+            }
 
             error.setVisibility(View.VISIBLE);
         }
