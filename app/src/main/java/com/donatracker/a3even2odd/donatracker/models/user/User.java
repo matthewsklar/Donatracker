@@ -46,6 +46,15 @@ public class User {
     }
 
     /**
+     * getter for accountType
+     *
+     * @return accountType
+     */
+    public UserTypes getAccountType() {
+        return accountType;
+    }
+
+    /**
      * user constructor
      *
      * @param username the user's username
