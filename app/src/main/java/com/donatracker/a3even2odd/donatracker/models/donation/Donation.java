@@ -1,5 +1,7 @@
 package com.donatracker.a3even2odd.donatracker.models.donation;
 
+import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+
 import java.util.LinkedList;
 
 public class Donation {
@@ -16,7 +18,7 @@ public class Donation {
     /**
      * The location the donation was made in.
      */
-    private String location;
+    private Locations location;
 
     /**
      * A short description of the item for display purposes.
@@ -50,7 +52,7 @@ public class Donation {
      *
      * @return location
      */
-    public String getLocation() {
+    public Locations getLocation() {
         return location;
     }
 
@@ -90,7 +92,7 @@ public class Donation {
      * @param descriptionFull full description of the donation
      * @param value amount donated (in dollars)
      */
-    public Donation(String timeStamp, String location, String descriptionShort,
+    public Donation(String timeStamp, Locations location, String descriptionShort,
                     String descriptionFull, double value) {
         this.timeStamp = timeStamp;
         this.location = location;
