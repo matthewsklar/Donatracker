@@ -1,4 +1,4 @@
-package com.donatracker.a3even2odd.donatracker.models.location;
+package com.donatracker.a3even2odd.donatracker.controllers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.dummy.DummyContent;
 import com.donatracker.a3even2odd.donatracker.dummy.DummyContent.DummyItem;
+import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 
 public class LocationDetailFragment extends Fragment {
