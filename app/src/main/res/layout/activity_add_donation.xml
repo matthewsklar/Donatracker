@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controllers.AddDonationActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998">
+
+        <TextView
+            android:id="@+id/textAddDonation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add a Donation"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textTimeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time Stamp" />
+
+        <EditText
+            android:id="@+id/inputTimeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="time" />
+
+        <TextView
+            android:id="@+id/textDonationLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textDescriptionShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Short Description" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputDescriptionShort"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textDescriptionFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Full Description" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Value" />
+
+        <EditText
+            android:id="@+id/inputValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputComments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Picture" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

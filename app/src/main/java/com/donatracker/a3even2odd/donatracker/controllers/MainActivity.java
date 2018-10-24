@@ -71,6 +71,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Handler for add donations button.
+     *
+     * @param v the button
+     */
+    public void onAddPressed(View v) {
+        Intent addDonationIntent = new Intent(this, AddDonationActivity.class);
+
+        startActivity(addDonationIntent);
+    }
+
+    /**
+     * Handler for Locations Button.
+     *
+     * @param v the button
+     */
+    public void onLocationsPressed(View v) {
+        Intent locationListIntent = new Intent(this, LocationListActivity.class);
+
+        startActivity(locationListIntent);
+    }
+
+    /**
      * Handler for logout button.
      *
      * @param v the button
@@ -83,17 +105,5 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Logout", "Successfully logged out");
 
         finish();
-    }
-
-    /**
-     * Handler for Locations Button/
-     *
-     * @param v the button
-     */
-    public void onLocationsPressed(View v) {
-        Intent locationListIntent = new Intent(this, LocationListActivity.class);
-
-        startActivity(locationListIntent);
-
     }
 }

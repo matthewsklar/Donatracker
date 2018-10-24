@@ -28,6 +28,7 @@
             android:layout_weight="1"
             android:background="@color/colorButtonLogin"
             android:fontFamily="sans-serif"
+            android:onClick="onAddPressed"
             android:text="Add Donation"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
