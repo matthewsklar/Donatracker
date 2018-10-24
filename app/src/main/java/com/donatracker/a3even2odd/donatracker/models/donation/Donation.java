@@ -33,7 +33,7 @@ public class Donation {
     /**
      * The amount donated (in dollars).
      */
-    private double value;
+    private String value;
 
     // TODO: Support optional types
 
@@ -79,7 +79,7 @@ public class Donation {
      *
      * @return value
      */
-    public double getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -93,7 +93,7 @@ public class Donation {
      * @param value amount donated (in dollars)
      */
     public Donation(String timeStamp, Locations location, String descriptionShort,
-                    String descriptionFull, double value) {
+                    String descriptionFull, String value) {
         this.timeStamp = timeStamp;
         this.location = location;
         this.descriptionShort = descriptionShort;

@@ -1,6 +1,5 @@
 package com.donatracker.a3even2odd.donatracker.controllers;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
@@ -26,6 +25,9 @@ public class AddDonationActivity extends Activity {
         setupLocationSpinner();
     }
 
+    /**
+     * Setup the data available in the location spinner.
+     */
     private void setupLocationSpinner() {
         locationSpinner = findViewById(R.id.locationSpinner);
         locationSpinner.setAdapter(new ArrayAdapter<>(this,
@@ -53,11 +55,11 @@ public class AddDonationActivity extends Activity {
      * @param v the button
      */
     public void onAddPressed(View v) {
-        Date date = new Date();
-
-        Donation donation = new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
+        new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
                 findViewById(R.id.inputDescriptionShort).toString(),
                 findViewById(R.id.inputDescriptionFull).toString(),
-                Double.parseDouble(findViewById(R.id.inputValue).toString()));
+                findViewById(R.id.inputValue).toString());
+
+        finish();
     }
 }
