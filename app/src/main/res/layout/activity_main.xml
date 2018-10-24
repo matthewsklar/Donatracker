@@ -46,7 +46,7 @@
             android:layout_weight="1"
             android:background="@color/colorButtonLogin"
             android:fontFamily="sans-serif"
-            android:onClick="onLocationsPressed"
+            android:onClick="onViewDonationsPressed"
             android:text="View Donations"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"

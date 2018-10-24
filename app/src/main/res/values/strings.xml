@@ -22,4 +22,5 @@
     <string name="error_incorrect_login">Username or password is incorrect</string>
     <string name="lockout">No login attempts left. Wait up to %d minutes.</string>
     <string name="title_activity_add_donation">addDonation</string>
+    <string name="title_activity_view_donations">ViewDonationsActivity</string>
 </resources>
