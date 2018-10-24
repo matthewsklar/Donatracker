@@ -1,14 +1,10 @@
 package com.donatracker.a3even2odd.donatracker.controllers;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.location.LocationDetailFragment;
-
 
 
 public class LocationDetailActivity extends AppCompatActivity {

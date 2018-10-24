@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.location.LocationDetailFragment;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.List;
@@ -26,26 +25,42 @@ public class LocationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
+
         View recyclerView = findViewById(R.id.list_of_locations);
         assert recyclerView != null;
-
         setupRecyclerView((RecyclerView) recyclerView);
 
     }
 
+    /**
+     * sets RecyclerView adapter and Layout
+     *
+     * @param recyclerView the recyclerView
+     */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         Log.d("location_data", "setupRecyclerView ran");
-        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(Locations.getLocList());
         recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
     }
 
+
+    /**
+     * RecyclerViewAdapter inner class
+     */
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
+        /**
+         * List of data to be put into recyclerView
+         */
         private final List<Locations> locList;
 
+        /**
+         * recyclerViewAdapter constructor
+         *
+         * @param locations list of elements(locations) for recyclerView
+         */
         public RecyclerViewAdapter(List<Locations> locations) {
             Log.d("location_data", "Adapter constructor " + locations.get(1).toString());
             locList = locations;
@@ -54,6 +69,7 @@ public class LocationListActivity extends AppCompatActivity {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            //gets view for viewholder
             Log.d("location_data", "CreateViewHolder ran");
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.location_list_content, parent, false);
@@ -64,6 +80,7 @@ public class LocationListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
             Log.d("location_data", "onBindViewHolder ran " + position);
+            //sets view for viewholder
             holder.location = (Locations)locList.get(position);
 
             holder.idView.setText("" + (position + 1));
