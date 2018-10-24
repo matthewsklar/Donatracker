@@ -10,7 +10,6 @@ import java.util.Random;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-
 /**
  * Utilities for encrypting and decrypting text strings.
  *
@@ -19,13 +18,11 @@ import javax.crypto.spec.PBEKeySpec;
  * @since 1.0
  */
 public class StringEncryption {
-
-
     private static final Random RANDOM = new SecureRandom();
-    private static final String SALT_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static final String SALT_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            + "abcdefghijklmnopqrstuvwxyz";
     private static final int HASH_ITERATIONS = 10000;
     private static final int KEY_LENGTH = 256;
-
 
     /**
      * Generates randomized salt value to be hashed with a passed String.
@@ -69,7 +66,6 @@ public class StringEncryption {
         }
     }
 
-
     /**
      * Encrypts a passed text string by hashing it along with a randomized salt value of a specified
      * length
@@ -98,6 +94,4 @@ public class StringEncryption {
     public static boolean verify(String providedText, String securedText, String salt) {
         return secure(providedText, salt).equalsIgnoreCase(securedText);
     }
-
-
 }

@@ -11,7 +11,6 @@ import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
 import com.donatracker.a3even2odd.donatracker.models.parser.YamlParser;
 
 import java.io.InputStream;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class WelcomeActivity extends AppCompatActivity {

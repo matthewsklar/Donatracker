@@ -4,7 +4,6 @@ import com.donatracker.a3even2odd.donatracker.models.user.User;
 
 import java.util.HashMap;
 
-
 public class Register {
     /**
      * The registrant's username
