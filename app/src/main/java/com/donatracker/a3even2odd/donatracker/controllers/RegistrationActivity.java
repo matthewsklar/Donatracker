@@ -51,9 +51,12 @@ public class RegistrationActivity extends AppCompatActivity {
             errorUsername.setVisibility(View.INVISIBLE);
         }
         if(register.assertUsername() && register.assertPassword()) {
-            new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
+            User user = new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
+
             Intent mainIntent = new Intent(this, MainActivity.class);
+            mainIntent.putExtra("EXTRA_USER_TYPE", user.getAccountType());
             startActivity(mainIntent);
+
             finish();
         }
     }

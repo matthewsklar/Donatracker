@@ -3,6 +3,7 @@ package com.donatracker.a3even2odd.donatracker.models.login;
 import android.util.Log;
 
 import com.donatracker.a3even2odd.donatracker.models.user.User;
+import com.donatracker.a3even2odd.donatracker.models.user.UserTypes;
 
 import java.util.HashMap;
 import java.util.Timer;
@@ -32,9 +33,9 @@ public class Login {
     private String password;
 
     /**
-     * Map of all users and their accounts
+     * Type of the user
      */
-    private HashMap<String, User> users;
+    private UserTypes userType;
 
     /**
      * Timer to call methods at designated times.
@@ -61,11 +62,13 @@ public class Login {
     }
 
     /**
-     * Getter for users
+     * Getter for userType.
      *
-     * @return list of all users
+     * @return userType
      */
-    public HashMap<String, User> getUsers() { return User.getUsers(); }
+    public UserTypes getUserType() {
+        return userType;
+    }
 
     /**
      * Constructor for login.
@@ -81,6 +84,13 @@ public class Login {
 
         timer = new Timer();
     }
+
+    /**
+     * Get user list
+     *
+     * @return list of all users
+     */
+    public HashMap<String, User> getUsers() { return User.getUsers(); }
 
     /**
      * Reset the reset attempts counter
@@ -115,6 +125,7 @@ public class Login {
 
         if (successfulLogin) {
             loginSingleton.setLoginAttempts(0);
+            userType = getUsers().get(username).getAccountType();
 
             return true;
         }

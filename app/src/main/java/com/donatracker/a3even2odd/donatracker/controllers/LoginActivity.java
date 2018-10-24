@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         if (login.verifyLogin()) {
             Log.d("Login", "Successfully logged in");
             Intent mainIntent = new Intent(this, MainActivity.class);
+            mainIntent.putExtra("EXTRA_USER_TYPE", login.getUserType());
             startActivity(mainIntent);
 
             finish();
