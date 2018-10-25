@@ -223,11 +223,6 @@ public class Donation {
         donations.addLast(this);
     }
 
-    /**
-     * Convert this Donation into a string showing all the data contained in it.
-     *
-     * @return the string for this Donation
-     */
     @Override
     public String toString() {
         return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
