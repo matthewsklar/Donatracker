@@ -1,5 +1,7 @@
 package com.donatracker.a3even2odd.donatracker.models.category;
 
+import android.support.annotation.NonNull;
+
 import java.util.LinkedList;
 
 /**
@@ -9,11 +11,16 @@ import java.util.LinkedList;
  * @version 1.0
  * @since 1.0
  */
-public class Category {
+public class Category implements Comparable<Category> {
     /**
      * Global list of all categories.
      */
     private static LinkedList<Category> categories = new LinkedList<>();
+
+    /**
+     * The the recent category added.
+     */
+    private static Category recentCategory;
 
     /**
      * The name of the category.
@@ -40,6 +47,15 @@ public class Category {
     }
 
     /**
+     * Getter for recentCategory.
+     *
+     * @return recentCategory
+     */
+    public static Category getRecentCategory() {
+        return recentCategory;
+    }
+
+    /**
      * Constructor.
      *
      * @param name name of the category
@@ -49,6 +65,7 @@ public class Category {
             this.name = name;
 
             categories.add(this);
+            recentCategory = this;
         }
     }
 
@@ -66,6 +83,11 @@ public class Category {
         }
 
         return false;
+    }
+
+    @Override
+    public int compareTo(@NonNull Category c) {
+        return toString().compareTo(c.toString());
     }
 
     /**

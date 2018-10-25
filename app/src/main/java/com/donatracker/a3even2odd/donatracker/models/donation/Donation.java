@@ -62,8 +62,6 @@ public class Donation {
      */
     private String comment;
 
-    // TODO: Support optional types
-
     /* Getters and Setters */
     /**
      * Getter for donations.
@@ -142,7 +140,7 @@ public class Donation {
      */
     private String getDate() {
         Date date = new Date();
-        String strDateFormat = "hh:mm:ss a";
+        String strDateFormat = "MM/dd/YY hh:mm:ss a";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat, Locale.US);
 
         return dateFormat.format(date);
@@ -221,14 +219,9 @@ public class Donation {
         this.category = category;
         this.comment = comment.toString();
 
-        donations.addLast(this);
+        donations.addFirst(this);
     }
 
-    /**
-     * Convert this Donation into a string showing all the data contained in it.
-     *
-     * @return the string for this Donation
-     */
     @Override
     public String toString() {
         return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
