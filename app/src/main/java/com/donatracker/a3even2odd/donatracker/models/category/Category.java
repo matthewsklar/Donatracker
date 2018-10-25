@@ -13,7 +13,7 @@ public class Category {
     /**
      * Global list of all categories.
      */
-    private static LinkedList<Category> categories;
+    private static LinkedList<Category> categories = new LinkedList<>();
 
     /**
      * The name of the category.
@@ -45,8 +45,6 @@ public class Category {
      * @param name name of the category
      */
     public Category(String name) {
-        categories = new LinkedList<>();
-
         if (!categoryExists(name)) {
             this.name = name;
 
@@ -68,5 +66,15 @@ public class Category {
         }
 
         return false;
+    }
+
+    /**
+     * Convert this Category into a string that contains its name.
+     *
+     * @return a string representation of this Category.
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }

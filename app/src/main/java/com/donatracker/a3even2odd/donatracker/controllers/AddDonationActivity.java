@@ -1,5 +1,6 @@
 package com.donatracker.a3even2odd.donatracker.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.TextInputEditText;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
@@ -20,14 +22,30 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class AddDonationActivity extends Activity {
+    /**
+     * Spinner containing all possible locations for the donation.
+     */
     private Spinner locationSpinner;
+
+    /**
+     * Spinner containing all possible categories for the donation.
+     */
+    private Spinner categorySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_donation);
 
+        setupSpinners();
+    }
+
+    /**
+     * Setup all the spinners in the view.
+     */
+    private void setupSpinners() {
         setupLocationSpinner();
+        setupCategorySpinner();
     }
 
     /**
@@ -37,6 +55,15 @@ public class AddDonationActivity extends Activity {
         locationSpinner = findViewById(R.id.locationSpinner);
         locationSpinner.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, Locations.getLocList()));
+    }
+
+    /**
+     * Setup the data available in the category spinner.
+     */
+    private void setupCategorySpinner() {
+        categorySpinner = findViewById(R.id.categorySpinner);
+        categorySpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, Category.getCategories()));
     }
 
     /**
@@ -109,37 +136,46 @@ public class AddDonationActivity extends Activity {
     }
 
     /**
-     * Handler for add button.
+     * Handler for "Add Donation" button.
      *
      * @param v the button
      */
-    public void onAddPressed(View v) {
+    public void onAddDonationPressed(View v) {
         // Required fields
         TextInputEditText descriptionShort = findViewById(R.id.inputDescriptionShort);
         TextInputEditText descriptionFull = findViewById(R.id.inputDescriptionFull);
         EditText value = findViewById(R.id.inputValue);
-        TextInputEditText category = findViewById(R.id.inputCategory);
 
         // Optional fields
         TextInputEditText comment = findViewById(R.id.inputComments);
 
-        HashMap<Editable, View> data = new HashMap<>(4);
+        HashMap<Editable, View> data = new HashMap<>(3);
         data.put(descriptionShort.getText(), findViewById(R.id.textEmptyDescriptionShort));
         data.put(descriptionFull.getText(), findViewById(R.id.textEmptyDescriptionFull));
         data.put(value.getText(), findViewById(R.id.textEmptyValue));
-        data.put(category.getText(), findViewById(R.id.textEmptyCategory));
 
         boolean valid = validateData(data);
 
         if (valid) {
             Donation donate = new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
                     descriptionShort.getText().toString(), descriptionFull.getText().toString(),
-                    value.getText().toString(), category.getText().toString(),
+                    value.getText().toString(), (Category) categorySpinner.getSelectedItem(),
                     comment.getText().toString());
 
             Log.d("Donation", "Added Donation: " + donate.toString());
 
             finish();
         }
+    }
+
+    /**
+     * Handler for "Add Category" button.
+     *
+     * @param v the button
+     */
+    public void onAddCategoryPressed(View v) {
+        Intent categoryIntent = new Intent(this, AddCategoryActivity.class);
+
+        startActivity(categoryIntent);
     }
 }

@@ -1,5 +1,6 @@
 package com.donatracker.a3even2odd.donatracker.models.donation;
 
+import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.LinkedList;
@@ -15,7 +16,7 @@ public class Donation {
     /**
      * Global list of all the donations.
      */
-    private static LinkedList<Donation> donations;
+    private static LinkedList<Donation> donations = new LinkedList<>();
 
     /**
      * The timestamp of when the donation was made.
@@ -45,7 +46,7 @@ public class Donation {
     /**
      * The category of the donation.
      */
-    private String category;
+    private Category category;
 
     /**
      * The comment for the donation.
@@ -112,7 +113,7 @@ public class Donation {
      *
      * @return category
      */
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -136,9 +137,7 @@ public class Donation {
      * @param category category of the donation
      */
     public Donation(String timeStamp, Locations location, String descriptionShort,
-                    String descriptionFull, String value, String category, String comment) {
-         donations = new LinkedList<>();
-
+                    String descriptionFull, String value, Category category, String comment) {
         this.timeStamp = timeStamp;
         this.location = location;
         this.descriptionShort = descriptionShort;
@@ -167,7 +166,7 @@ public class Donation {
     @Override
     public String toString() {
         return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
-                "Full Description: %s, Category: %s }", timeStamp, location, descriptionShort,
-                descriptionFull, category);
+                "Full Description: %s, Category: %s, Comment: %s }",
+                timeStamp, location, descriptionShort, descriptionFull, category, comment);
     }
 }
