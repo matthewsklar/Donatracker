@@ -219,7 +219,7 @@ public class Donation {
         this.category = category;
         this.comment = comment.toString();
 
-        donations.addLast(this);
+        donations.addFirst(this);
     }
 
     @Override
