@@ -82,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Handler for add view donations button.
+     *
+     * @param v the button
+     */
+    public void onViewDonationsPressed(View v) {
+        Intent viewDonationsIntent = new Intent(this, ViewDonationsActivity.class);
+
+        startActivity(viewDonationsIntent);
+    }
+
+    /**
      * Handler for Locations Button.
      *
      * @param v the button

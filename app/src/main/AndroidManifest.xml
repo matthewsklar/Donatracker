@@ -28,7 +28,13 @@
         <activity android:name=".controllers.LocationDetailActivity" />
         <activity
             android:name=".controllers.AddDonationActivity"
-            android:label="@string/title_activity_add_donation"></activity>
+            android:label="@string/title_activity_add_donation" />
+        <activity
+            android:name=".controllers.ViewDonationsActivity"
+            android:label="@string/title_activity_view_donations" />
+        <activity
+            android:name=".controllers.AddCategoryActivity"
+            android:label="@string/title_activity_add_category"></activity>
     </application>
 
 </manifest>
