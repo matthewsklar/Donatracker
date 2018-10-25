@@ -33,6 +33,11 @@ public class AddDonationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_donation);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         setupSpinners();
     }
@@ -77,6 +82,7 @@ public class AddDonationActivity extends Activity {
         // Optional fields
         TextInputEditText comment = findViewById(R.id.inputComments);
 
+        // Get text of fields
         Editable descriptionShortText = descriptionShort.getText();
         Editable descriptionFullText = descriptionFull.getText();
         Editable valueText = value.getText();
@@ -91,9 +97,8 @@ public class AddDonationActivity extends Activity {
 
         if (donate.validateData(data)) {
             donate.addDonation((Locations) locationSpinner.getSelectedItem(),
-                    descriptionShortText.toString(), descriptionFullText.toString(),
-                    value.getText().toString(), (Category) categorySpinner.getSelectedItem(),
-                    commentText.toString());
+                    descriptionShortText, descriptionFullText, valueText,
+                    (Category) categorySpinner.getSelectedItem(), commentText);
 
             Log.d("Donation", "Added Donation: " + donate.toString());
 

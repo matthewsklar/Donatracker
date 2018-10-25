@@ -211,15 +211,15 @@ public class Donation {
      * @param value amount donated (in dollars)
      * @param category category of the donation
      */
-    public void addDonation(Locations location, String descriptionShort, String descriptionFull,
-                        String value, Category category, String comment) {
+    public void addDonation(Locations location, Editable descriptionShort, Editable descriptionFull,
+                            Editable value, Category category, Editable comment) {
         this.timeStamp = getDate();
         this.location = location;
-        this.descriptionShort = descriptionShort;
-        this.descriptionFull = descriptionFull;
-        this.value = value;
+        this.descriptionShort = descriptionShort.toString();
+        this.descriptionFull = descriptionFull.toString();
+        this.value = value.toString();
         this.category = category;
-        this.comment = comment;
+        this.comment = comment.toString();
 
         donations.addLast(this);
     }
