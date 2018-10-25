@@ -9,6 +9,7 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -61,8 +62,6 @@ public class Donation {
      * The comment for the donation.
      */
     private String comment;
-
-    // TODO: Support optional types
 
     /* Getters and Setters */
     /**
@@ -142,7 +141,7 @@ public class Donation {
      */
     private String getDate() {
         Date date = new Date();
-        String strDateFormat = "hh:mm:ss a";
+        String strDateFormat = "MM/dd/YY hh:mm:ss a";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat, Locale.US);
 
         return dateFormat.format(date);
