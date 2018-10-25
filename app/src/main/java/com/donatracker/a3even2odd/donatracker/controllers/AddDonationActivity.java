@@ -16,9 +16,6 @@ import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 public class AddDonationActivity extends Activity {
@@ -67,75 +64,6 @@ public class AddDonationActivity extends Activity {
     }
 
     /**
-     * Test the validity of an individual piece of the data that will be added to donation.
-     *
-     * Data is considered valid if neither it nor the object containing it are null. If the data is
-     * invalid, the error message in the view set to VISIBLE, and if the data is valid, the error
-     * message in the view is set to GONE.
-     *
-     * @param test the data to test
-     * @param view the view to show or hide depending on
-     * @return if the data is valid
-     * @throws NullPointerException throw when the test data is null
-     */
-    private boolean testValidity(Editable test, View view)
-            throws NullPointerException {
-        if (test == null) throw new NullPointerException("Editable cannot be null");
-
-        if (test.toString().equals("")) {
-            view.setVisibility(View.VISIBLE);
-
-            return false;
-        } else {
-            view.setVisibility(View.GONE);
-        }
-        return true;
-    }
-
-    /**
-     * Check if all the data to be added to the donation is valid.
-     *
-     * Data is considered valid if neither it nor the object containing it are null.
-     *
-     * @param map holds each object containing the data and the corresponding view for it to show
-     *            an error
-     * @return if the data is valid
-     */
-    private boolean validateData(HashMap<Editable, View> map) {
-        boolean valid;
-        boolean validity = true;
-
-        for (Editable e : map.keySet()) {
-            try {
-                valid = testValidity(e, map.get(e));
-
-                if (!valid) {
-                    validity = false;
-                }
-            } catch (NullPointerException ex) {
-                Log.e("Donate", "Failed to add donation because an editable was null\n" + ex);
-            }
-        }
-
-        return validity;
-    }
-
-    /**
-     * Get the current time based on the date and return it as a string.
-     *
-     * @return the current time as a string
-     */
-    private String getDate() {
-        Date date = new Date();
-        String strDateFormat = "hh:mm:ss a";
-        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
-
-        String formattedDate = dateFormat.format(date);
-
-        return formattedDate;
-    }
-
-    /**
      * Handler for "Add Donation" button.
      *
      * @param v the button
@@ -149,18 +77,23 @@ public class AddDonationActivity extends Activity {
         // Optional fields
         TextInputEditText comment = findViewById(R.id.inputComments);
 
+        Editable descriptionShortText = descriptionShort.getText();
+        Editable descriptionFullText = descriptionFull.getText();
+        Editable valueText = value.getText();
+        Editable commentText = comment.getText();
+
         HashMap<Editable, View> data = new HashMap<>(3);
-        data.put(descriptionShort.getText(), findViewById(R.id.textEmptyDescriptionShort));
-        data.put(descriptionFull.getText(), findViewById(R.id.textEmptyDescriptionFull));
-        data.put(value.getText(), findViewById(R.id.textEmptyValue));
+        data.put(descriptionShortText, findViewById(R.id.textEmptyDescriptionShort));
+        data.put(descriptionFullText, findViewById(R.id.textEmptyDescriptionFull));
+        data.put(valueText, findViewById(R.id.textEmptyValue));
 
-        boolean valid = validateData(data);
+        Donation donate = new Donation();
 
-        if (valid) {
-            Donation donate = new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
-                    descriptionShort.getText().toString(), descriptionFull.getText().toString(),
+        if (donate.validateData(data)) {
+            donate.addDonation((Locations) locationSpinner.getSelectedItem(),
+                    descriptionShortText.toString(), descriptionFullText.toString(),
                     value.getText().toString(), (Category) categorySpinner.getSelectedItem(),
-                    comment.getText().toString());
+                    commentText.toString());
 
             Log.d("Donation", "Added Donation: " + donate.toString());
 
