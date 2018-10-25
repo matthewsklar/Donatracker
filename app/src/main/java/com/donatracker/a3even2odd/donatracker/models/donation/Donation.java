@@ -4,11 +4,18 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.LinkedList;
 
+/**
+ * Code implementation of donations.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class Donation {
     /**
      * Global list of all the donations.
      */
-    private static LinkedList<Donation> donations = new LinkedList<>();
+    private static LinkedList<Donation> donations;
 
     /**
      * The timestamp of when the donation was made.
@@ -39,6 +46,11 @@ public class Donation {
      * The category of the donation.
      */
     private String category;
+
+    /**
+     * The comment for the donation.
+     */
+    private String comment;
 
     // TODO: Support optional types
 
@@ -105,6 +117,15 @@ public class Donation {
     }
 
     /**
+     * Getter for comment.
+     *
+     * @return comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
      * Constructor for Donation.
      *
      * @param timeStamp when the donation was made.
@@ -115,13 +136,16 @@ public class Donation {
      * @param category category of the donation
      */
     public Donation(String timeStamp, Locations location, String descriptionShort,
-                    String descriptionFull, String value, String category) {
+                    String descriptionFull, String value, String category, String comment) {
+         donations = new LinkedList<>();
+
         this.timeStamp = timeStamp;
         this.location = location;
         this.descriptionShort = descriptionShort;
         this.descriptionFull = descriptionFull;
         this.value = value;
         this.category = category;
+        this.comment = comment;
 
         donations.addLast(this);
     }
@@ -133,5 +157,17 @@ public class Donation {
      */
     public boolean addDonation() {
         return true;
+    }
+
+    /**
+     * Convert this Donation into a string showing all the data contained in it.
+     *
+     * @return the string for this Donation
+     */
+    @Override
+    public String toString() {
+        return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
+                "Full Description: %s, Category: %s }", timeStamp, location, descriptionShort,
+                descriptionFull, category);
     }
 }

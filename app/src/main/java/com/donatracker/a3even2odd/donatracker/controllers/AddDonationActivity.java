@@ -76,20 +76,21 @@ public class AddDonationActivity extends Activity {
      */
     private boolean validateData(HashMap<Editable, View> map) {
         boolean valid;
+        boolean validity = true;
 
         for (Editable e : map.keySet()) {
             try {
                 valid = testValidity(e, map.get(e));
 
                 if (!valid) {
-                    return false;
+                    validity = false;
                 }
             } catch (NullPointerException ex) {
                 Log.e("Donate", "Failed to add donation because an editable was null\n" + ex);
             }
         }
 
-        return true;
+        return validity;
     }
 
     /**
@@ -113,10 +114,14 @@ public class AddDonationActivity extends Activity {
      * @param v the button
      */
     public void onAddPressed(View v) {
+        // Required fields
         TextInputEditText descriptionShort = findViewById(R.id.inputDescriptionShort);
         TextInputEditText descriptionFull = findViewById(R.id.inputDescriptionFull);
         EditText value = findViewById(R.id.inputValue);
         TextInputEditText category = findViewById(R.id.inputCategory);
+
+        // Optional fields
+        TextInputEditText comment = findViewById(R.id.inputComments);
 
         HashMap<Editable, View> data = new HashMap<>(4);
         data.put(descriptionShort.getText(), findViewById(R.id.textEmptyDescriptionShort));
@@ -127,9 +132,12 @@ public class AddDonationActivity extends Activity {
         boolean valid = validateData(data);
 
         if (valid) {
-            new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
-                    descriptionShort.toString(), descriptionFull.toString(), value.toString(),
-                    category.toString());
+            Donation donate = new Donation(getDate(), (Locations) locationSpinner.getSelectedItem(),
+                    descriptionShort.getText().toString(), descriptionFull.getText().toString(),
+                    value.getText().toString(), category.getText().toString(),
+                    comment.getText().toString());
+
+            Log.d("Donation", "Added Donation: " + donate.toString());
 
             finish();
         }

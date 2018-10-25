@@ -7,6 +7,7 @@
     tools:context=".controllers.AddDonationActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -22,10 +23,11 @@
             android:id="@+id/textAddDonation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add a Donation"
+            android:text="Add @string/action_select_login Donation"
             android:textAlignment="center"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="@string/addDonation" />
 
         <TextView
             android:id="@+id/textDonationLocation"
@@ -138,13 +140,22 @@
                 android:id="@+id/inputCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textEmptyCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Comments" />
+            android:text="Comments (Optional)" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -158,27 +169,24 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
-            android:id="@+id/textEmptyCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cannot be empty"
-            android:textColor="@android:color/holo_red_dark"
-            android:visibility="gone" />
-
-        <TextView
             android:id="@+id/textPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Picture" />
+            android:text="Picture (Optional)" />
 
-        <Button
-            android:id="@+id/buttonAddDonation"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onAddPressed"
-            android:text="Add Donation"
-            android:textAlignment="center"
-            android:textAllCaps="true" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAddDonation"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onAddPressed"
+        android:text="Add Donation"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
