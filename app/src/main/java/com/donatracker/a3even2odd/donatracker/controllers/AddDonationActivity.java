@@ -16,6 +16,7 @@ import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 public class AddDonationActivity extends Activity {
@@ -33,13 +34,17 @@ public class AddDonationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_donation);
+
+        setupSpinners();
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
-        setupSpinners();
+        setupCategorySpinner();
+        Collections.sort(Category.getCategories());
+        categorySpinner.setSelection(Category.getCategories().indexOf(Category.getRecentCategory()));
     }
 
     /**
