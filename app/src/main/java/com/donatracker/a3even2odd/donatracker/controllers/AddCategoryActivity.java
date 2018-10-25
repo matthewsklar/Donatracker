@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
