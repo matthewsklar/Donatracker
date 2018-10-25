@@ -23,7 +23,9 @@ public class AddCategoryActivity extends Activity {
     public void onAddCategoryPressed(View v) {
         TextInputEditText name = findViewById(R.id.inputName);
 
-        new Category(name.getText().toString());
+        if (name.getText() != null) {
+            new Category(name.getText().toString());
+        }
 
         finish();
     }
