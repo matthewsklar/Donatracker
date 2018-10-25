@@ -8,7 +8,7 @@ public class Donation {
     /**
      * Global list of all the donations.
      */
-    public static LinkedList<Donation> donations = new LinkedList<>();
+    private static LinkedList<Donation> donations = new LinkedList<>();
 
     /**
      * The timestamp of when the donation was made.
@@ -35,9 +35,21 @@ public class Donation {
      */
     private String value;
 
+    /**
+     * The category of the donation.
+     */
+    private String category;
+
     // TODO: Support optional types
 
     /* Getters and Setters */
+    /**
+     * Getter for donations.
+     */
+    public static LinkedList<Donation> getDonations() {
+        return donations;
+    }
+
     /**
      * Getter for timeStamp.
      *
@@ -84,6 +96,15 @@ public class Donation {
     }
 
     /**
+     * Getter for category.
+     *
+     * @return category
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
      * Constructor for Donation.
      *
      * @param timeStamp when the donation was made.
@@ -91,14 +112,16 @@ public class Donation {
      * @param descriptionShort short description of the donation
      * @param descriptionFull full description of the donation
      * @param value amount donated (in dollars)
+     * @param category category of the donation
      */
     public Donation(String timeStamp, Locations location, String descriptionShort,
-                    String descriptionFull, String value) {
+                    String descriptionFull, String value, String category) {
         this.timeStamp = timeStamp;
         this.location = location;
         this.descriptionShort = descriptionShort;
         this.descriptionFull = descriptionFull;
         this.value = value;
+        this.category = category;
 
         donations.addLast(this);
     }

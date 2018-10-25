@@ -70,6 +70,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/textEmptyDescriptionShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/textDescriptionFull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,6 +95,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/textEmptyDescriptionFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/textValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +115,14 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textEmptyValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textCategory"
@@ -132,6 +156,14 @@
                 android:layout_height="wrap_content"
                 android:singleLine="false" />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textEmptyCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textPicture"
