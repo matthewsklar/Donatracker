@@ -54,6 +54,10 @@ public class DonationFragment extends Fragment {
             ((TextView) view.findViewById(R.id.textTimeStamp)).setText(donation.getTimeStamp());
             ((TextView) view.findViewById(R.id.textLocation)).setText(donation.getLocation().toString());
             ((TextView) view.findViewById(R.id.textDescriptionShort)).setText(donation.getDescriptionShort());
+            ((TextView) view.findViewById(R.id.textValue)).setText(donation.getValue());
+            ((TextView) view.findViewById(R.id.textFullDescription)).setText(donation.getDescriptionFull());
+            ((TextView) view.findViewById(R.id.textComment)).setText(donation.getComment());
+            ((TextView) view.findViewById(R.id.textCategory)).setText(donation.getCategory().toString());
         }
         return view;
     }
