@@ -23,7 +23,7 @@
             android:id="@+id/textAddDonation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add @string/action_select_login Donation"
+            android:text="Add Donation"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"

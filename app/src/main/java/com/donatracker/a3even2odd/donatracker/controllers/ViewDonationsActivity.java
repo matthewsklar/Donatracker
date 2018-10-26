@@ -11,33 +11,85 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
+import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ViewDonationsActivity extends Activity {
+    /**
+     * Spinner containing all possible locations for the donation to query donations.
+     */
+    private Spinner locationSpinner;
+
+    /**
+     * The donations being shown.
+     */
+    private View recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_donations);
 
-        View recyclerView = findViewById(R.id.listDonations);
+        setupLocationSpinner();
+
+        recyclerView = findViewById(R.id.listDonations);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView((RecyclerView) recyclerView, Donation.getDonations());
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<Donation> donations) {
         Log.d("donation", "setupRecyclerView ran");
-        recyclerView.setAdapter(new ViewDonationsActivity.RecyclerViewAdapter(Donation.getDonations()));
+        recyclerView.setAdapter(new ViewDonationsActivity.RecyclerViewAdapter(donations));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    /**
+     * Setup the data available in the location query spinner.
+     */
+    private void setupLocationSpinner() {
+        locationSpinner = findViewById(R.id.locationQuerySpinner);
 
+        locationSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, Locations.getLocList()));
+    }
+
+    /**
+     * Handler for "Query" button.
+     *
+     * @param v the button
+     */
+    public void onQuery(View v) {
+        String donations = locationSpinner.getSelectedItem().toString();
+
+        LinkedList<Donation> queriedDonations = new LinkedList<>();
+
+        for (Donation d : Donation.getDonations()) {
+            if (d.getLocation().toString().equals(donations)) {
+                queriedDonations.addLast(d);
+            }
+        }
+
+        setupRecyclerView((RecyclerView) recyclerView, queriedDonations);
+    }
+
+    /**
+     * Handler for "Reset" button.
+     *
+     * @param v the button
+     */
+    public void onReset(View v) {
+        setupRecyclerView((RecyclerView) recyclerView, Donation.getDonations());
+    }
 
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewDonationsActivity.RecyclerViewAdapter.ViewHolder> {
