@@ -2,7 +2,10 @@ package com.donatracker.a3even2odd.donatracker.models.location;
 
 import android.util.Log;
 
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -33,6 +36,7 @@ public class Locations {
      */
     private static List<Locations> locList = new ArrayList<>();
 
+    private List<Donation> inventory = new LinkedList<>();
     /**
      * getter for list of locations
      *
@@ -70,6 +74,15 @@ public class Locations {
     }
 
     /**
+     * getter for inventory
+     *
+     * @return inventory of location
+     */
+    public List<Donation> getInventory() {
+        return inventory;
+    }
+
+    /**
      * location constructor
      *
      * @param name the locations name
@@ -87,7 +100,7 @@ public class Locations {
      * @return location id and name
      */
     public String toString() {
-        return getLocationId() + name;
+        return name;
     }
 
     /**
@@ -104,6 +117,10 @@ public class Locations {
         }
         Log.d("Details", "Didnt find id " + locationId);
         return null;
+    }
+
+    public boolean addInventory(Donation d) {
+        return inventory.add(d);
     }
 
     /**

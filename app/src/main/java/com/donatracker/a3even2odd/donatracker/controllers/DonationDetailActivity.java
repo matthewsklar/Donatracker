@@ -7,29 +7,26 @@ import android.util.Log;
 import com.donatracker.a3even2odd.donatracker.R;
 
 
-public class LocationDetailActivity extends AppCompatActivity {
+public class DonationDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.location_detail);
+        setContentView(R.layout.fragment_donation);
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Log.d("Detail", "its null");
+            Log.d("Detail2", "its null");
             Bundle arguments = new Bundle();
-            arguments.putInt(LocationDetailFragment.ARG_LOCATION_ID,
-                    getIntent().getIntExtra(LocationDetailFragment.ARG_LOCATION_ID, 1000));
-            LocationDetailFragment fragment = new LocationDetailFragment();
+            arguments.putInt(DonationFragment.ARG_DONATION,
+                    getIntent().getIntExtra(DonationFragment.ARG_DONATION, 1000));
+            DonationFragment fragment = new DonationFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.layout_location, fragment)
+                    .replace(R.id.layout_donation, fragment)
                     .commit();
 
         }
     }
-
-
-
 }

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -25,8 +26,13 @@ public class Donation {
     /**
      * Global list of all the donations.
      */
-    private static LinkedList<Donation> donations = new LinkedList<>();
+    private static List<Donation> donations = new LinkedList<>();
 
+    private static int numDonations = 0;
+    /**
+     * id of donation so we can find it and put em in a list
+     */
+    private int donationId;
     /**
      * The timestamp of when the donation was made.
      */
@@ -66,10 +72,18 @@ public class Donation {
     /**
      * Getter for donations.
      */
-    public static LinkedList<Donation> getDonations() {
+    public static List<Donation> getDonations() {
         return donations;
     }
 
+    /**
+     * Getter for DonationId
+     *
+     * @return donationId
+     */
+    public int getDonationId() {
+        return donationId;
+    }
     /**
      * Getter for timeStamp.
      *
@@ -147,6 +161,23 @@ public class Donation {
     }
 
     /**
+     * TODO: optimize so not O(n) maybe
+     * finds donation by id
+     *
+     * @param id DonationId
+     * @return Donation
+     */
+    public static Donation findDonationById(int id) {
+        for (Donation d : donations) {
+            if (d.getDonationId() == id) {
+                return d;
+            }
+        }
+        Log.d("Details", "Didnt find id " + id);
+        return null;
+    }
+
+    /**
      * Test the validity of an individual piece of the data that will be added to donation.
      *
      * Data is considered valid if neither it nor the object containing it are null. If the data is
@@ -218,8 +249,13 @@ public class Donation {
         this.value = value.toString();
         this.category = category;
         this.comment = comment.toString();
+        donationId = numDonations++;
 
-        donations.addFirst(this);
+
+        Log.d("donation","Description:  " + descriptionShort.toString());
+
+        ((LinkedList)donations).addFirst(this);
+        location.addInventory(this);
     }
 
     @Override
