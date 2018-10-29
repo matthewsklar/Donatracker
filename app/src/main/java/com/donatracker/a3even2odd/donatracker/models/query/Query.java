@@ -11,6 +11,15 @@ import java.util.List;
  * @since 1.0
  */
 public class Query<E extends Queryable> {
+    /**
+     * Query through the given elements to find which elements contain the given data.
+     *
+     * Add each element that contains a search element to a list that is returned.
+     *
+     * @param data data to query for
+     * @param queryList data to query
+     * @return the elements from the queryList that contain parts of the data
+     */
     public List<E> query(List<String> data, List<E> queryList) {
         LinkedList<E> queriedList = new LinkedList<>();
 

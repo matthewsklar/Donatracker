@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/textCategory"
+                android:id="@+id/textDonationViewLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
