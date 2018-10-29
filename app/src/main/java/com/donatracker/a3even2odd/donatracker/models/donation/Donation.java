@@ -6,9 +6,11 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.query.Queryable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,7 +24,7 @@ import java.util.Locale;
  * @version 1.0
  * @since 1.0
  */
-public class Donation {
+public class Donation implements Queryable {
     /**
      * Global list of all the donations.
      */
@@ -256,6 +258,14 @@ public class Donation {
 
         ((LinkedList)donations).addFirst(this);
         location.addInventory(this);
+    }
+
+    @Override
+    public List<String> queryData() {
+        ArrayList<String> queryList = new ArrayList<>();
+        queryList.add(location.toString());
+
+        return queryList;
     }
 
     @Override

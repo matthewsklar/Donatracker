@@ -18,7 +18,9 @@ import android.widget.TextView;
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.query.Query;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,15 +71,11 @@ public class ViewDonationsActivity extends Activity {
      * @param v the button
      */
     public void onQuery(View v) {
-        String donations = locationSpinner.getSelectedItem().toString();
+        List<String> queries = new ArrayList<>();
+        queries.add(locationSpinner.getSelectedItem().toString());
+        Query<Donation> query = new Query<>();
 
-        LinkedList<Donation> queriedDonations = new LinkedList<>();
-
-        for (Donation d : Donation.getDonations()) {
-            if (d.getLocation().toString().equals(donations)) {
-                queriedDonations.addLast(d);
-            }
-        }
+        List<Donation> queriedDonations = query.query(queries, Donation.getDonations());
 
         setupRecyclerView((RecyclerView) recyclerView, queriedDonations);
     }
