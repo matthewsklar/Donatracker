@@ -6,9 +6,11 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.query.Queryable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,17 +24,27 @@ import java.util.Locale;
  * @version 1.0
  * @since 1.0
  */
-public class Donation {
+public class Donation implements Queryable {
     /**
      * Global list of all the donations.
      */
-    private static List<Donation> donations = new LinkedList<>();
+    private static LinkedList<Donation> donations = new LinkedList<>();
 
+    /**
+     * The amount of donations that have been made.
+     */
     private static int numDonations = 0;
+
     /**
      * id of donation so we can find it and put em in a list
      */
     private int donationId;
+
+    /**
+     * Name of the donation.
+     */
+    private String name;
+
     /**
      * The timestamp of when the donation was made.
      */
@@ -84,6 +96,7 @@ public class Donation {
     public int getDonationId() {
         return donationId;
     }
+
     /**
      * Getter for timeStamp.
      *
@@ -91,6 +104,15 @@ public class Donation {
      */
     public String getTimeStamp() {
         return timeStamp;
+    }
+
+    /**
+     * Getter for name.
+     *
+     * @return name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -234,14 +256,17 @@ public class Donation {
     /**
      * Add the donation to the data structure.
      *
+     * @param name name of the donation
      * @param location where the donation was made
      * @param descriptionShort short description of the donation
      * @param descriptionFull full description of the donation
      * @param value amount donated (in dollars)
      * @param category category of the donation
      */
-    public void addDonation(Locations location, Editable descriptionShort, Editable descriptionFull,
-                            Editable value, Category category, Editable comment) {
+    public void addDonation(Editable name, Locations location, Editable descriptionShort,
+                            Editable descriptionFull, Editable value, Category category,
+                            Editable comment) {
+        this.name = name.toString();
         this.timeStamp = getDate();
         this.location = location;
         this.descriptionShort = descriptionShort.toString();
@@ -254,14 +279,24 @@ public class Donation {
 
         Log.d("donation","Description:  " + descriptionShort.toString());
 
-        ((LinkedList)donations).addFirst(this);
+        donations.addFirst(this);
         location.addInventory(this);
     }
 
     @Override
+    public List<String> queryData() {
+        ArrayList<String> queryList = new ArrayList<>();
+        queryList.add(location.toString());
+        queryList.add(category.toString());
+        queryList.add(name);
+
+        return queryList;
+    }
+
+    @Override
     public String toString() {
-        return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
-                "Full Description: %s, Category: %s, Comment: %s }",
-                timeStamp, location, descriptionShort, descriptionFull, category, comment);
+        return String.format("{ Name: %s, Time Stamp: %s, Location: %s, Short Description: %s, " +
+                "Full Description: %s, Category: %s, Comment: %s }", name, timeStamp, location,
+                descriptionShort, descriptionFull, category, comment);
     }
 }

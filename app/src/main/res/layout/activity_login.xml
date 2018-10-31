@@ -30,21 +30,29 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="13dp" />
 
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/gainsboro"
             android:ems="10"
             android:hint="Username"
             android:inputType="textEmailAddress"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/gainsboro"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -56,7 +64,30 @@
             android:layout_height="wrap_content"
             android:text="Username or password is incorrect"
             android:textColor="@color/colorAccent"
-            android:visibility="invisible" />
+            android:visibility="gone" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <Button
+            android:id="@+id/login3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@color/colorButton"
+            android:onClick="onLoginPressed"
+            android:text="Login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.294" />
 
     </LinearLayout>
 
@@ -72,24 +103,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:onClick="onLoginPressed"
-            android:text="Login"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.294" />
 
         <Space
             android:layout_width="match_parent"

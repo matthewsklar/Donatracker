@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,17 +17,31 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.query.Query;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for activity_view_donations view.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class ViewDonationsActivity extends Activity {
     /**
      * Spinner containing all possible locations for the donation to query donations.
      */
     private Spinner locationSpinner;
+
+    /**
+     * Spinner containing all possible categories for the donation to query donations.
+     */
+    private Spinner categorySpinner;
 
     /**
      * The donations being shown.
@@ -38,15 +53,22 @@ public class ViewDonationsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_donations);
 
-        setupLocationSpinner();
+        setupSpinners();
 
         recyclerView = findViewById(R.id.listDonations);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView, Donation.getDonations());
     }
 
+    /**
+     * Setup a RecyclerView.
+     *
+     * @param recyclerView an instance of the RecyclerView
+     * @param donations the donations to show
+     */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<Donation> donations) {
         Log.d("donation", "setupRecyclerView ran");
+
         recyclerView.setAdapter(new ViewDonationsActivity.RecyclerViewAdapter(donations));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -54,13 +76,26 @@ public class ViewDonationsActivity extends Activity {
     }
 
     /**
+     * Load values into spinners.
+     */
+    private void setupSpinners() {
+        locationSpinner = findViewById(R.id.locationQuerySpinner);
+        categorySpinner = findViewById(R.id.categoryQuerySpinner);
+
+        setupSpinner(locationSpinner, Locations.getLocList());
+        setupSpinner(categorySpinner, Category.getCategories());
+    }
+
+    /**
      * Setup the data available in the location query spinner.
      */
-    private void setupLocationSpinner() {
-        locationSpinner = findViewById(R.id.locationQuerySpinner);
+    private void setupSpinner(Spinner spinner, List elements) {
+        List spinnerList = new ArrayList(elements.size() + 1);
+        spinnerList.add("");
+        spinnerList.addAll(elements);
 
-        locationSpinner.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Locations.getLocList()));
+        spinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, spinnerList));
     }
 
     /**
@@ -69,15 +104,20 @@ public class ViewDonationsActivity extends Activity {
      * @param v the button
      */
     public void onQuery(View v) {
-        String donations = locationSpinner.getSelectedItem().toString();
+        TextInputEditText queryDonationName = findViewById(R.id.queryDonationName);
 
-        LinkedList<Donation> queriedDonations = new LinkedList<>();
+        List<String> queries = new ArrayList<>();
+        queries.add(locationSpinner.getSelectedItem().toString());
+        queries.add(categorySpinner.getSelectedItem().toString());
 
-        for (Donation d : Donation.getDonations()) {
-            if (d.getLocation().toString().equals(donations)) {
-                queriedDonations.addLast(d);
-            }
+        if (queryDonationName.getText() == null) {
+            queries.add("");
+        } else {
+            queries.add(queryDonationName.getText().toString());
         }
+
+        Query<Donation> query = new Query<>();
+        List<Donation> queriedDonations = query.query(queries, Donation.getDonations());
 
         setupRecyclerView((RecyclerView) recyclerView, queriedDonations);
     }
@@ -90,7 +130,6 @@ public class ViewDonationsActivity extends Activity {
     public void onReset(View v) {
         setupRecyclerView((RecyclerView) recyclerView, Donation.getDonations());
     }
-
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewDonationsActivity.RecyclerViewAdapter.ViewHolder> {
 
