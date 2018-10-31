@@ -79,28 +79,23 @@ public class ViewDonationsActivity extends Activity {
      * Load values into spinners.
      */
     private void setupSpinners() {
-        setupLocationSpinner();
-        setupCategorySpinner();
+        locationSpinner = findViewById(R.id.locationQuerySpinner);
+        categorySpinner = findViewById(R.id.categoryQuerySpinner);
+
+        setupSpinner(locationSpinner, Locations.getLocList());
+        setupSpinner(categorySpinner, Category.getCategories());
     }
 
     /**
      * Setup the data available in the location query spinner.
      */
-    private void setupLocationSpinner() {
-        locationSpinner = findViewById(R.id.locationQuerySpinner);
+    private void setupSpinner(Spinner spinner, List elements) {
+        List spinnerList = new ArrayList(elements.size() + 1);
+        spinnerList.add("");
+        spinnerList.addAll(elements);
 
-        locationSpinner.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Locations.getLocList()));
-    }
-
-    /**
-     * Setup the data available in the category query spinner.
-     */
-    private void setupCategorySpinner() {
-        categorySpinner = findViewById(R.id.categoryQuerySpinner);
-
-        categorySpinner.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Category.getCategories()));
+        spinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, spinnerList));
     }
 
     /**
@@ -114,7 +109,12 @@ public class ViewDonationsActivity extends Activity {
         List<String> queries = new ArrayList<>();
         queries.add(locationSpinner.getSelectedItem().toString());
         queries.add(categorySpinner.getSelectedItem().toString());
-        queries.add(queryDonationName.getText().toString());
+
+        if (queryDonationName.getText() == null) {
+            queries.add("");
+        } else {
+            queries.add(queryDonationName.getText().toString());
+        }
 
         Query<Donation> query = new Query<>();
         List<Donation> queriedDonations = query.query(queries, Donation.getDonations());

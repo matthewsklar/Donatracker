@@ -25,21 +25,40 @@ public class Query<E extends Queryable> {
     public List<E> query(List<String> data, List<E> queryList) {
         LinkedList<E> queriedList = new LinkedList<>();
 
-        for (int i = 0; i < queryList.size(); i++) {
-            E e = queryList.get(i);
+        if (emptyQuery(data)) queriedList.addAll(queryList);
+        else {
+            for (int i = 0; i < queryList.size(); i++) {
+                E e = queryList.get(i);
 
-            for (int j = 0; j < data.size(); j++) {
-                String query = data.get(j);
+                for (int j = 0; j < data.size(); j++) {
+                    String query = data.get(j);
 
-                if (query != null && !query.equals("") && e.queryData().get(j).toLowerCase()
-                        .contains(query.toLowerCase())) {
-                    queriedList.addLast(e);
+                    if (!query.equals("")) {
+                        if (e.queryData().get(j).toLowerCase()
+                                .contains(query.toLowerCase())) {
+                            queriedList.addLast(e);
 
-                    break;
+                            break;
+                        }
+                    }
                 }
             }
         }
 
         return queriedList;
+    }
+
+    /**
+     * Check if the query has no parameters.
+     *
+     * @param data the query data
+     * @return if the query contains no data
+     */
+    private boolean emptyQuery(List<String> data) {
+        for (String s : data) {
+            if (!s.equals("")) return false;
+        }
+
+        return true;
     }
 }
