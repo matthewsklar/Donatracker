@@ -19,6 +19,13 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * Controller for activity_add_donation view.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class AddDonationActivity extends Activity {
     /**
      * Spinner containing all possible locations for the donation.

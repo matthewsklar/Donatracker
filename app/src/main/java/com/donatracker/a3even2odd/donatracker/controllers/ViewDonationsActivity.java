@@ -25,6 +25,13 @@ import com.donatracker.a3even2odd.donatracker.models.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for activity_view_donations view.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class ViewDonationsActivity extends Activity {
     /**
      * Spinner containing all possible locations for the donation to query donations.

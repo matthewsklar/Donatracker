@@ -28,8 +28,11 @@ public class Donation implements Queryable {
     /**
      * Global list of all the donations.
      */
-    private static List<Donation> donations = new LinkedList<>();
+    private static LinkedList<Donation> donations = new LinkedList<>();
 
+    /**
+     * The amount of donations that have been made.
+     */
     private static int numDonations = 0;
 
     /**
@@ -276,7 +279,7 @@ public class Donation implements Queryable {
 
         Log.d("donation","Description:  " + descriptionShort.toString());
 
-        ((LinkedList)donations).addFirst(this);
+        donations.addFirst(this);
         location.addInventory(this);
     }
 
