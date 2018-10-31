@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +59,7 @@ public class ViewDonationsActivity extends Activity {
      * @param recyclerView an instance of the RecyclerView
      * @param donations the donations to show
      */
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List donations) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<Donation> donations) {
         Log.d("donation", "setupRecyclerView ran");
 
         recyclerView.setAdapter(new ViewDonationsActivity.RecyclerViewAdapter(donations));
