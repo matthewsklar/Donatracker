@@ -68,7 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     /**
-     * create an instance of FirebaseStorage
+     * Create instances of StoreReference.
      */
     public void includesForCreateReference() {
 
