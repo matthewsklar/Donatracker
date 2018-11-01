@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="40dp"
     tools:context=".controllers.RegistrationActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,21 +23,28 @@
             android:id="@+id/registerText"
             android:layout_width="match_parent"
             android:layout_height="84dp"
-            android:text="Register"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:text="@string/action_select_register" />
 
         <EditText
             android:id="@+id/usernameNew"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:background="@color/textEntryBackground"
             android:ems="10"
-            android:hint="Create Username"
+            android:hint="@string/create_username"
             android:inputType="textEmailAddress"
+            android:paddingBottom="7dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="7dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,42 +53,56 @@
             android:id="@+id/errorUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="username is unavailable"
+            android:text="@string/error_username_unavailable"
             android:textColor="@android:color/holo_red_light"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/usernameNew" />
 
         <EditText
             android:id="@+id/passwordNew"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:background="@color/textEntryBackground"
             android:ems="10"
-            android:hint="Password"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
             android:inputType="textPassword"
+            android:paddingBottom="7dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="7dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/errorUsername" />
 
         <EditText
             android:id="@+id/passwordNew2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:background="@color/textEntryBackground"
             android:ems="10"
-            android:hint="Re-enter Password"
+            android:fontFamily="sans-serif"
+            android:hint="@string/reenter_password"
             android:inputType="textPassword"
+            android:paddingBottom="7dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="7dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordNew" />
@@ -89,23 +111,23 @@
             android:id="@+id/passwordCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Password does not match"
+            android:text="@string/error_password_mismatch"
             android:textColor="@android:color/holo_red_light"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordNew2" />
 
         <Spinner
             android:id="@+id/userTypeSpinner"
-            android:layout_width="368dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,39 +136,49 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.818">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <Button
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/button_login_back2"
+            android:layout_width="121dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onRegisterPressed"
-            android:text="Register" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="#00ffffff"
             android:onClick="onCancelPressed"
-            android:text="Cancel"
-            tools:text="@string/cancel" />
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:tint="@android:color/black"
+            android:visibility="visible"
+            app:srcCompat="@drawable/back_button_icon" />
+
+        <Button
+            android:id="@+id/button_login2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@color/colorButton"
+            android:onClick="onRegisterPressed"
+            android:text="@string/action_select_register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.294" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

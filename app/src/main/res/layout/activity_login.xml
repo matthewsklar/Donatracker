@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
     tools:context=".controllers.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,8 +26,10 @@
             android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:fontFamily="sans-serif"
+            android:text="@string/action_select_login"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <Space
@@ -36,13 +40,19 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gainsboro"
+            android:background="@color/textEntryBackground"
             android:ems="10"
-            android:hint="Username"
+            android:fontFamily="sans-serif"
+            android:hint="@string/username"
             android:inputType="textEmailAddress"
+            android:paddingBottom="7dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="7dp"
             android:selectAllOnFocus="false"
             android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -52,17 +62,23 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gainsboro"
+            android:background="@color/textEntryBackground"
             android:ems="10"
-            android:hint="Password"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:paddingBottom="7dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="7dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username or password is incorrect"
+            android:text="@string/error_incorrect_login"
             android:textColor="@color/colorAccent"
             android:visibility="gone" />
 
@@ -70,53 +86,50 @@
             android:layout_width="match_parent"
             android:layout_height="11dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageButton
+            android:id="@+id/button_login_back"
+            android:layout_width="121dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            android:contentDescription="@string/back"
+            android:onClick="onCancelPressed"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:tint="@android:color/black"
+            android:visibility="visible"
+            app:srcCompat="@drawable/back_button_icon" />
+
         <Button
-            android:id="@+id/login3"
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:background="@color/colorButton"
             android:onClick="onLoginPressed"
-            android:text="Login"
+            android:text="@string/action_select_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.294" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onCancelPressed"
-            android:text="Cancel"
-            tools:text="@string/cancel" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
