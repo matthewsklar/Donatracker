@@ -17,6 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static boolean var = true;
+    public Locations badLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onViewDonationsPressed(View v) {
         Intent viewDonationsIntent = new Intent(this, ViewDonationsActivity.class);
-
         startActivity(viewDonationsIntent);
     }
 
