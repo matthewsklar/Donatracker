@@ -7,12 +7,16 @@ import android.util.Log;
 import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.category.Category;
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
 import com.donatracker.a3even2odd.donatracker.models.parser.YamlParser;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -22,8 +26,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        // TODO: Maybe move this
+        // TODO: Maybe move these to loading screen
         loadConfigs();
+        loadPersistentData();
     }
 
     /**
@@ -35,6 +40,45 @@ public class WelcomeActivity extends AppCompatActivity {
         List<Float> configList = parseLogin.Parse();
 
         LoginSingleton.getInstance().setLockoutData(configList);
+    }
+
+    /**
+     * Load persistent data from files and store it in Persistable classes.
+     */
+    private void loadPersistentData() {
+        Log.d("Welcome_Activity", getFilesDir().getAbsolutePath() + "/" + Donation.getSaveFile());
+
+        if (new File(getFilesDir().getAbsolutePath() + "/" + Donation.getSaveFile())
+               .exists()) {
+           Object obj =
+                   Persistence.getInstance().load(Donation.getSaveFile(), getApplicationContext());
+
+           if (obj != null) {
+               Donation.load(((Persistable) obj).getPersistentData());
+
+               Log.d("Welcome_Activity", "Persistent data loaded.");
+           } else {
+               Log.d("Welcome_Activity", "Persistent data not loaded.");
+           }
+       } else {
+           Log.d("Welcome_Activity", "File does not exist.");
+       }
+
+        if (new File(getFilesDir().getAbsolutePath() + "/" + Category.SAVE_FILE)
+                .exists()) {
+            Object obj =
+                    Persistence.getInstance().load(Category.SAVE_FILE, getApplicationContext());
+
+            if (obj != null) {
+                Category.load(((Persistable) obj).getPersistentData());
+
+                Log.d("Welcome_Activity", "Persistent data loaded.");
+            } else {
+                Log.d("Welcome_Activity", "Persistent data not loaded.");
+            }
+        } else {
+            Log.d("Welcome_Activity", "File does not exist.");
+        }
     }
 
     /**
@@ -151,4 +195,4 @@ public class WelcomeActivity extends AppCompatActivity {
         imagesRef = spaceRef.getParent();
         // [END reference_full_example]
     }
-    }
+}

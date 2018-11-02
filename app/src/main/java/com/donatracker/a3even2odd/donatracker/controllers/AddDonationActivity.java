@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -116,6 +118,11 @@ public class AddDonationActivity extends Activity {
                     (Category) categorySpinner.getSelectedItem(), commentText);
 
             Log.d("Donation", "Added Donation: " + donate.toString());
+
+            Toast.makeText(this, "Donation Added", Toast.LENGTH_SHORT).show();
+
+            Persistence.getInstance().write(Donation.getSaveFile(), getApplicationContext(),
+                    donate);
 
             finish();
         }
