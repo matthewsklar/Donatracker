@@ -14,13 +14,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.List;
 
 public class LocationListActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,7 @@ public class LocationListActivity extends AppCompatActivity {
      */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         Log.d("location_data", "setupRecyclerView ran");
-        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
+        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList(), Donation.getDonations()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -61,7 +60,7 @@ public class LocationListActivity extends AppCompatActivity {
          *
          * @param locations list of elements(locations) for recyclerView
          */
-        public RecyclerViewAdapter(List<Locations> locations) {
+        RecyclerViewAdapter(List<Locations> locations, List<Donation> donations) {
             Log.d("location_data", "Adapter constructor " + locations.get(1).toString());
             locList = locations;
         }
@@ -81,17 +80,16 @@ public class LocationListActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
             Log.d("location_data", "onBindViewHolder ran " + position);
             //sets view for viewholder
-            holder.location = (Locations)locList.get(position);
+            holder.location = locList.get(position);
 
             holder.idView.setText("" + (position + 1));
-            holder.contentView.setText(((Locations)locList.get(position)).getName());
+            holder.contentView.setText((locList.get(position)).getName());
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationDetailActivity.class);
                     intent.putExtra(LocationDetailFragment.ARG_LOCATION_ID, holder.location.getLocationId());
-
                     context.startActivity(intent);
                 }
             });
@@ -107,16 +105,15 @@ public class LocationListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View view;
-            public final TextView idView;
-            public final TextView contentView;
-            public Locations location;
+            final TextView idView;
+            final TextView contentView;
+            Locations location;
 
-
-            public ViewHolder(View view) {
+            ViewHolder(View view) {
                 super(view);
                 this.view = view;
-                idView = (TextView) view.findViewById(R.id.id);
-                contentView = (TextView) view.findViewById(R.id.content);
+                idView = view.findViewById(R.id.id);
+                contentView = view.findViewById(R.id.content);
                 Log.d("location_data", "ViewHolder constructor ran /n" + idView.getText());
             }
 
@@ -126,7 +123,4 @@ public class LocationListActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
 }

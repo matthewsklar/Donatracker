@@ -43,12 +43,12 @@ public class RegistrationActivity extends AppCompatActivity {
         if(!register.assertPassword()) {
             passwordCheck.setVisibility(View.VISIBLE);
         } else {
-            passwordCheck.setVisibility(View.INVISIBLE);
+            passwordCheck.setVisibility(View.GONE);
         }
         if (!register.assertUsername()) {
             errorUsername.setVisibility(View.VISIBLE);
         } else {
-            errorUsername.setVisibility(View.INVISIBLE);
+            errorUsername.setVisibility(View.GONE);
         }
         if(register.assertUsername() && register.assertPassword()) {
             User user = new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
