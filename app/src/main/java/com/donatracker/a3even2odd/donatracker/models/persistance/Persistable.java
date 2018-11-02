@@ -1,6 +1,6 @@
 package com.donatracker.a3even2odd.donatracker.models.persistance;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Interface for objects that persist between iterations of the app.
@@ -11,12 +11,9 @@ import java.util.List;
  */
 public interface Persistable<E> {
     /**
-     * Access the persistant data and load it into the object.
+     * Get the data that will be saved to persist between separate instances of the app.
      *
-     * @param e the saved instance of the class that is to be loaded
+     * @return all the data that will be saved
      */
-    //void load(E e);
-
-
-    List<E> getPersistentData();
+    Collection<E> getPersistentData();
 }

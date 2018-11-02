@@ -212,7 +212,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      *
      * @param savedDonation the donations saved in persistent data
      */
-    public static void load(List<Donation> savedDonation) {
+    public static void load(LinkedList<Donation> savedDonation) {
         if (savedDonation == null) return;
 
         donations.addAll(savedDonation);
@@ -316,8 +316,8 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
 
         donations.addFirst(this);
 
-        donationsCopy.addAll(donations);
         donations.getLast().donationsCopy.clear();
+        donationsCopy.addAll(donations);
 
         location.addInventory(this);
     }

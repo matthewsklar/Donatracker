@@ -10,6 +10,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Code implementation to handle persistence between different instances of the app.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class Persistence {
     /**
      * Singleton instance of Persistence
@@ -56,6 +63,13 @@ public class Persistence {
         return null;
     }
 
+    /**
+     * Write data to persistent file.
+     *
+     * @param loc location of the persistent file
+     * @param appContext getApplicationdata() from the activity calling write
+     * @param obj the object to save
+     */
     public void write(String loc, Context appContext, Object obj) {
         try {
             FileOutputStream fileOutputStream = appContext

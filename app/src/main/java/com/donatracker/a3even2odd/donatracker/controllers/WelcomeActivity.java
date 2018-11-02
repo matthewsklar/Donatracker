@@ -13,11 +13,13 @@ import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
 import com.donatracker.a3even2odd.donatracker.models.parser.YamlParser;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
+import com.donatracker.a3even2odd.donatracker.models.user.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -46,23 +48,35 @@ public class WelcomeActivity extends AppCompatActivity {
      * Load persistent data from files and store it in Persistable classes.
      */
     private void loadPersistentData() {
-        Log.d("Welcome_Activity", getFilesDir().getAbsolutePath() + "/" + Donation.getSaveFile());
-
         if (new File(getFilesDir().getAbsolutePath() + "/" + Donation.getSaveFile())
                .exists()) {
            Object obj =
                    Persistence.getInstance().load(Donation.getSaveFile(), getApplicationContext());
 
            if (obj != null) {
-               Donation.load(((Persistable) obj).getPersistentData());
+               Donation.load((LinkedList<Donation>) (((Persistable) obj).getPersistentData()));
 
-               Log.d("Welcome_Activity", "Persistent data loaded.");
+               Log.d("Welcome_Activity", "Donation persistent data loaded.");
            } else {
-               Log.d("Welcome_Activity", "Persistent data not loaded.");
+               Log.d("Welcome_Activity", "Donation persistent data not loaded.");
            }
-       } else {
-           Log.d("Welcome_Activity", "File does not exist.");
-       }
+        } else {
+            Log.d("Welcome_Activity", "Donation file does not exist.");
+        }
+
+        if (new File(getFilesDir().getAbsolutePath() + "/" + User.SAVE_FILE).exists()) {
+            Object obj = Persistence.getInstance().load(User.SAVE_FILE, getApplicationContext());
+
+            if (obj != null) {
+                User.load(((User) obj).getPersistentData());
+
+                Log.d("Welcome_Activity", "User persistent data loaded.");
+            } else {
+                Log.d("Welcome_Activity", "User persistent data not loaded.");
+            }
+        } else {
+            Log.d("Welcome_Activity", "User file does not exist.");
+        }
 
         if (new File(getFilesDir().getAbsolutePath() + "/" + Category.SAVE_FILE)
                 .exists()) {
@@ -72,12 +86,12 @@ public class WelcomeActivity extends AppCompatActivity {
             if (obj != null) {
                 Category.load(((Persistable) obj).getPersistentData());
 
-                Log.d("Welcome_Activity", "Persistent data loaded.");
+                Log.d("Welcome_Activity", "Category persistent data loaded.");
             } else {
-                Log.d("Welcome_Activity", "Persistent data not loaded.");
+                Log.d("Welcome_Activity", "Category persistent data not loaded.");
             }
         } else {
-            Log.d("Welcome_Activity", "File does not exist.");
+            Log.d("Welcome_Activity", "Category file does not exist.");
         }
     }
 

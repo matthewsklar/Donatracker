@@ -6,6 +6,7 @@ import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      *
      * @param savedCategory the donations saved in persistent data
      */
-    public static void load(List<Category> savedCategory) {
+    public static void load(Collection<Category> savedCategory) {
         if (savedCategory == null) return;
 
         categories.addAll(savedCategory);
