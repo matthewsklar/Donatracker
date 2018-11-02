@@ -6,8 +6,10 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 import com.donatracker.a3even2odd.donatracker.models.query.Queryable;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.Locale;
  * @version 1.0
  * @since 1.0
  */
-public class Donation implements Queryable {
+public class Donation implements Serializable, Queryable, Persistable<Donation> {
     /**
      * Global list of all the donations.
      */
@@ -36,7 +38,17 @@ public class Donation implements Queryable {
     private static int numDonations = 0;
 
     /**
-     * id of donation so we can find it and put em in a list
+     * Location of the persistent save file containing donation data.
+     */
+    private static String saveFile = "donation_data.bin";
+
+    /**
+     * Local copy of donations.
+     */
+    private LinkedList<Donation> donationsCopy = new LinkedList<>();
+
+    /**
+     * ID of donation so we can find it and put em in a list
      */
     private int donationId;
 
@@ -83,9 +95,20 @@ public class Donation implements Queryable {
     /* Getters and Setters */
     /**
      * Getter for donations.
+     *
+     * @return donations
      */
     public static List<Donation> getDonations() {
         return donations;
+    }
+
+    /**
+     * Getter for saveFile.
+     *
+     * @return saveFile
+     */
+    public static String getSaveFile() {
+        return saveFile;
     }
 
     /**
@@ -183,6 +206,19 @@ public class Donation implements Queryable {
     }
 
     /**
+     * Load the saved donation into the current donation.
+     *
+     * Add the saved donations data of donations to the current projects list of donations.
+     *
+     * @param savedDonation the donations saved in persistent data
+     */
+    public static void load(LinkedList<Donation> savedDonation) {
+        if (savedDonation == null) return;
+
+        donations.addAll(savedDonation);
+    }
+
+    /**
      * TODO: optimize so not O(n) maybe
      * finds donation by id
      *
@@ -276,11 +312,19 @@ public class Donation implements Queryable {
         this.comment = comment.toString();
         donationId = numDonations++;
 
-
         Log.d("donation","Description:  " + descriptionShort.toString());
 
         donations.addFirst(this);
+
+        donations.getLast().donationsCopy.clear();
+        donationsCopy.addAll(donations);
+
         location.addInventory(this);
+    }
+
+    @Override
+    public List<Donation> getPersistentData() {
+        return donationsCopy;
     }
 
     @Override
