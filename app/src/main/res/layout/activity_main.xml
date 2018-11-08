@@ -67,6 +67,25 @@
             android:textSize="36sp"
             android:visibility="visible" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorButtonLogin"
+            android:fontFamily="sans-serif"
+            android:onClick="onMapPressed"
+            android:text="Map"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="36sp"
+            android:visibility="visible" />
+
     </LinearLayout>
 
     <Button
