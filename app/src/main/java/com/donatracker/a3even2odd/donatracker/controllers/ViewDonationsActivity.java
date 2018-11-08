@@ -182,7 +182,7 @@ public class ViewDonationsActivity extends Activity {
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DonationDetailActivity.class);
-                    intent.putExtra(DonationFragment.ARG_DONATION, holder.donation.getDonationId());
+                    intent.putExtra(DonationFragment.ARG_DONATION, holder.donation.getTimeStamp());
 
                     context.startActivity(intent);
                 }
