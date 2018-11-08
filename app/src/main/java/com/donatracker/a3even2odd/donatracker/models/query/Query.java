@@ -29,18 +29,22 @@ public class Query<E extends Queryable> {
         else {
             for (int i = 0; i < queryList.size(); i++) {
                 E e = queryList.get(i);
-
+                boolean meetsReq = false;
                 for (int j = 0; j < data.size(); j++) {
                     String query = data.get(j);
 
                     if (!query.equals("")) {
                         if (e.queryData().get(j).toLowerCase()
                                 .contains(query.toLowerCase())) {
-                            queriedList.addLast(e);
-
+                            meetsReq = true;
+                        } else {
+                            meetsReq = false;
                             break;
                         }
                     }
+                }
+                if (meetsReq) {
+                    queriedList.addLast(e);
                 }
             }
         }
