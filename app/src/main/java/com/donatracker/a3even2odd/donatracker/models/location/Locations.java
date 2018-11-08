@@ -4,16 +4,16 @@ import android.util.Log;
 
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
-public class Locations {
-
+public class Locations implements Serializable {
     /**
-     * the name of the location
+     * Name of the location
      */
     private String name;
     /**
@@ -31,6 +31,7 @@ public class Locations {
      * data[10]: website
      */
     private String[] data;
+
     /**
      * list of locations
      */

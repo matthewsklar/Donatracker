@@ -110,6 +110,7 @@ public class ViewDonationsActivity extends Activity {
         queries.add(locationSpinner.getSelectedItem().toString());
         queries.add(categorySpinner.getSelectedItem().toString());
 
+
         if (queryDonationName.getText() == null) {
             queries.add("");
         } else {
@@ -118,6 +119,15 @@ public class ViewDonationsActivity extends Activity {
 
         Query<Donation> query = new Query<>();
         List<Donation> queriedDonations = query.query(queries, Donation.getDonations());
+
+        TextView empty = findViewById(R.id.empty);
+
+        if (queriedDonations.size() == 0) {
+            empty.setText("No donation matches these conditions.");
+            empty.setVisibility(View.VISIBLE);
+        } else {
+            empty.setVisibility(View.GONE);
+        }
 
         setupRecyclerView((RecyclerView) recyclerView, queriedDonations);
     }

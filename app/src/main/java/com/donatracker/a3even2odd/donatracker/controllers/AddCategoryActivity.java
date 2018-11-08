@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 
 public class AddCategoryActivity extends Activity {
     @Override
@@ -24,8 +25,12 @@ public class AddCategoryActivity extends Activity {
         TextInputEditText name = findViewById(R.id.inputName);
 
         if (name.getText() != null) {
-            new Category(name.getText().toString());
+            Category category = new Category(name.getText().toString());
+
+            Persistence.getInstance().write(Category.SAVE_FILE, getApplicationContext(), category);
         }
+
+
 
         finish();
     }

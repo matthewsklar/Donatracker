@@ -1,8 +1,31 @@
 package com.donatracker.a3even2odd.donatracker.models.user;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class User {
+/**
+ * Code implementation of users.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
+public class User implements Serializable/*, Persistable<User> */ {
+    /**
+     * Location of the persistent save file containing user data.
+     */
+    public static final String SAVE_FILE = "user_data.bin";
+
+    /**
+     * Map of users mapped by accountId(username).
+     */
+    private static HashMap<String, User> users = new HashMap<>();
+
+    /**
+     * Local copy of users.
+     */
+    private HashMap<String, User> usersCopy = new HashMap<>();
+
     /**
      * the Id of the user. currently saved as the username
      */
@@ -15,10 +38,6 @@ public class User {
      * user type
      */
     private UserTypes accountType;
-    /**
-     * Map of users mapped by accountId(username).
-     */
-    private static HashMap<String, User> users = new HashMap<>();
 
     /**
      * Getter for users HashMap
@@ -64,7 +83,11 @@ public class User {
         this.accountId = username;
         this.password = password;
         this.accountType = accountType;
+
         users.put(accountId, this);
+
+        usersCopy.clear();
+        usersCopy.putAll(users);
     }
 
     /**
@@ -77,4 +100,32 @@ public class User {
         this(username, password, UserTypes.USER);
     }
 
+    /**
+     * Load the saved user into the current donation.
+     *
+     * Add the saved user data of user to the current projects list of users.
+     *
+     * @param savedUser the users saved in persistent data
+     */
+    public static void load(HashMap<String, User> savedUser) {
+        if (savedUser == null) return;
+
+        users.putAll(savedUser);
+    }
+
+    /**
+     * Get the persistent data of the user.
+     *
+     * @return persistent data of the user
+     */
+    public HashMap<String, User> getPersistentData() {
+        return usersCopy;
+    }
+
+    /*
+    @Override
+    public HashMap<String, User> getPersistentData() {
+        return usersCopy;
+    }
+    */
 }
