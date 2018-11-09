@@ -2,12 +2,14 @@ package com.donatracker.a3even2odd.donatracker.models.login;
 
 import android.util.Log;
 
+import com.donatracker.a3even2odd.donatracker.models.Constants;
 import com.donatracker.a3even2odd.donatracker.models.user.User;
 import com.donatracker.a3even2odd.donatracker.models.user.UserTypes;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 /**
  * Handle login protocols.
@@ -90,7 +92,7 @@ public class Login {
      *
      * @return list of all users
      */
-    public HashMap<String, User> getUsers() { return User.getUsers(); }
+    public Map<String, User> getUsers() { return User.getUsers(); }
 
     /**
      * Reset the reset attempts counter
@@ -99,9 +101,9 @@ public class Login {
         timer.cancel();
         timer = new Timer();
 
-        // TODO: Replace this with destroying no longer used timers
         timer.schedule(resetAttempt(loginSingleton.getLoginAttempts()),
-                (int) (loginSingleton.getLockoutData().getAttemptReset() * 60 * 1000));
+                (int) (loginSingleton.getLockoutData().getAttemptReset()
+                        * Constants.SECONDS * Constants.MILLISECONDS));
     }
 
     /**
@@ -141,7 +143,7 @@ public class Login {
      * @return if the username is valid
      */
     private boolean verifyUsername() {
-        // TODO: Check that username matches requirements
+        if ("".equals(username)) return false;
 
         return getUsers().containsKey(username);
     }
@@ -152,6 +154,8 @@ public class Login {
      * @return if the password is valid
      */
     private boolean verifyPassword() {
+        if ("".equals(password)) return false;
+
         return password.equals(getUsers().get(username).getPassword());
     }
 

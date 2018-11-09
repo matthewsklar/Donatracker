@@ -58,7 +58,7 @@ public class Query<E extends Queryable> {
      * @param data the query data
      * @return if the query contains no data
      */
-    private boolean emptyQuery(List<String> data) {
+    private boolean emptyQuery(Iterable<String> data) {
         for (String s : data) {
             if (!s.equals("")) return false;
         }

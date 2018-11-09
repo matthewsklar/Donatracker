@@ -32,7 +32,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         userTypeSpinner = findViewById(R.id.userTypeSpinner);
-        userTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, UserTypes.values()));
+        userTypeSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, UserTypes.values()));
     }
 
     /**

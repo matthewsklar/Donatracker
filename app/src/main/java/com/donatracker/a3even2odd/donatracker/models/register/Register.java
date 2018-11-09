@@ -2,7 +2,7 @@ package com.donatracker.a3even2odd.donatracker.models.register;
 
 import com.donatracker.a3even2odd.donatracker.models.user.User;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Register {
     /**
@@ -22,7 +22,7 @@ public class Register {
      * getter method for Users information
      * @return user Map
      */
-    private HashMap<String, User> getUsers() {
+    private Map<String, User> getUsers() {
         return User.getUsers();
     }
 

@@ -13,11 +13,12 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Code implementation of donations.
@@ -45,7 +46,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
     /**
      * Local copy of donations.
      */
-    private LinkedList<Donation> donationsCopy = new LinkedList<>();
+    private List<Donation> donationsCopy = new LinkedList<>();
 
     /**
      * ID of donation so we can find it and put em in a list
@@ -212,14 +213,13 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      *
      * @param savedDonation the donations saved in persistent data
      */
-    public static void load(LinkedList<Donation> savedDonation) {
+    public static void load(Collection<Donation> savedDonation) {
         if (savedDonation == null) return;
 
         donations.addAll(savedDonation);
     }
 
     /**
-     * TODO: optimize so not O(n) maybe
      * finds donation by id
      *
      * @param id DonationId
@@ -227,7 +227,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      */
     public static Donation findDonationById(String id) {
         for (Donation d : donations) {
-            if (d.getTimeStamp().equals(id)) {
+            if (id.equals(d.getTimeStamp())) {
                 return d;
             }
         }
@@ -251,7 +251,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
             throws NullPointerException {
         if (test == null) throw new NullPointerException("Editable cannot be null");
 
-        if (test.toString().equals("")) {
+        if ("".equals(test.toString())) {
             view.setVisibility(View.VISIBLE);
 
             return false;
@@ -270,7 +270,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      *            an error
      * @return if the data is valid
      */
-    public boolean validateData(HashMap<Editable, View> map) {
+    public boolean validateData(Map<Editable, View> map) {
         boolean valid;
         boolean validity = true;
 
@@ -310,7 +310,6 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
         this.value = value.toString();
         this.category = category;
         this.comment = comment.toString();
-        donationId = numDonations++;
 
         Log.d("donation","Description:  " + descriptionShort.toString());
 
@@ -329,7 +328,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
 
     @Override
     public List<String> queryData() {
-        ArrayList<String> queryList = new ArrayList<>();
+        List<String> queryList = new ArrayList<>();
         queryList.add(location.toString());
         queryList.add(category.toString());
         queryList.add(name);

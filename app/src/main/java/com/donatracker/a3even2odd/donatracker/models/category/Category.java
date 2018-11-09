@@ -23,7 +23,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     private static LinkedList<Category> categories = new LinkedList<>();
 
     /**
-     * The the recent category added.
+     * The most recent category added.
      */
     private static Category recentCategory;
 
@@ -35,7 +35,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     /**
      * Local copy of categories.
      */
-    private LinkedList<Category> categoryCopy = new LinkedList<>();
+    private List<Category> categoryCopy = new LinkedList<>();
 
     /**
      * The name of the category.
@@ -99,6 +99,15 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     }
 
     /**
+     * Get the index of the most recently added category.
+     *
+     * @return index of the most recently added category.
+     */
+    public static int indexOfRecentCategory() {
+        return categories.indexOf(recentCategory);
+    }
+
+    /**
      * Check if the category's name is valid.
      *
      * A valid name is a non-blank name that does not already exist.
@@ -117,7 +126,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      */
     private boolean categoryExists(String name) {
         for (Category c : categories) {
-            if (c.getName().equals(name)) {
+            if (name.equals(c.getName())) {
                 return true;
             }
         }

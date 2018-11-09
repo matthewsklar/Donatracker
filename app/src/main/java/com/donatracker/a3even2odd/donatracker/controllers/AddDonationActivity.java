@@ -20,6 +20,7 @@ import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller for activity_add_donation view.
@@ -53,7 +54,7 @@ public class AddDonationActivity extends Activity {
 
         setupCategorySpinner();
         Collections.sort(Category.getCategories());
-        categorySpinner.setSelection(Category.getCategories().indexOf(Category.getRecentCategory()));
+        categorySpinner.setSelection(Category.indexOfRecentCategory());
     }
 
     /**
@@ -104,7 +105,7 @@ public class AddDonationActivity extends Activity {
         Editable valueText = value.getText();
         Editable commentText = comment.getText();
 
-        HashMap<Editable, View> data = new HashMap<>(3);
+        Map<Editable, View> data = new HashMap<>(3);
         data.put(nameText, findViewById(R.id.textEmptyName));
         data.put(descriptionShortText, findViewById(R.id.textEmptyDescriptionShort));
         data.put(descriptionFullText, findViewById(R.id.textEmptyDescriptionFull));

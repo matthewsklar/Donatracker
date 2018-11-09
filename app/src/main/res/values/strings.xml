@@ -30,7 +30,8 @@
     <string name="title_activity_add_donation">addDonation</string>
     <string name="title_activity_view_donations">ViewDonationsActivity</string>
     <string name="back">Back</string>
-
+    <string name="no_matching_donations">No donations match these conditions.</string>
+    <string name="number_list">%d: </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addDonation">Add a Donation</string>

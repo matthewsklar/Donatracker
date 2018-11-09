@@ -4,8 +4,8 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Parse YAML files and store data in data class.
@@ -24,7 +24,6 @@ public class YamlParser extends Parser {
         super(inputStream);
     }
 
-    // TODO: Rewrite these comments
     /**
      * Parse the file into a data class.
      */
@@ -34,7 +33,7 @@ public class YamlParser extends Parser {
 
         InputStream inputStream = getInputStream();
 
-        LinkedHashMap data = (LinkedHashMap) yaml.load(inputStream);
+        Map data = (Map) yaml.load(inputStream);
 
         List<Float> valList = new ArrayList<>();
 

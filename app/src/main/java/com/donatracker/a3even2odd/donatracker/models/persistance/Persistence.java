@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -47,7 +48,7 @@ public class Persistence {
     public Object load(String loc, Context appContext) {
         try {
             FileInputStream fileInputStream = appContext.openFileInput(loc);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ObjectInput objectInputStream = new ObjectInputStream(fileInputStream);
             Object obj = objectInputStream.readObject();
             objectInputStream.close();
 
@@ -67,7 +68,7 @@ public class Persistence {
      * Write data to persistent file.
      *
      * @param loc location of the persistent file
-     * @param appContext getApplicationdata() from the activity calling write
+     * @param appContext getApplicationData() from the activity calling write
      * @param obj the object to save
      */
     public void write(String loc, Context appContext, Object obj) {
