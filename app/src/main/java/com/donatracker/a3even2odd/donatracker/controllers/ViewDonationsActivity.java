@@ -176,7 +176,7 @@ public class ViewDonationsActivity extends Activity {
             holder.donation = donations.get(position);
 
             holder.idView.setText("" + (position + 1));
-            holder.contentView.setText((donations.get(position)).getDescriptionShort());
+            holder.contentView.setText((donations.get(position)).getName());
             holder.view.setOnClickListener(new View.OnClickListener() {
                  @Override
                 public void onClick(View v) {

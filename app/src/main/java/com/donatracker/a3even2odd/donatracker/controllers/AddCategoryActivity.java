@@ -30,8 +30,6 @@ public class AddCategoryActivity extends Activity {
             Persistence.getInstance().write(Category.SAVE_FILE, getApplicationContext(), category);
         }
 
-
-
         finish();
     }
 }
