@@ -82,6 +82,8 @@ public class Category implements Serializable, Persistable<Category>, Comparable
 
         categories.add(this);
         recentCategory = this;
+        categoryCopy.clear();
+        categoryCopy.addAll(categories);
     }
 
     /**
