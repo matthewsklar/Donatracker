@@ -104,6 +104,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Handler for Map Button
+     *
+     * @param v the button
+     */
+    public void onMapPressed(View v) {
+        Intent mapIntent = new Intent(this,MapsActivity.class);
+
+        startActivity(mapIntent);
+    }
+
+    /**
      * Handler for logout button.
      *
      * @param v the button

@@ -35,7 +35,7 @@ public class DonationFragment extends Fragment {
         // based on argument passed in from LocationDetailActivity
         try {
             if (getArguments().containsKey(ARG_DONATION)) {
-                int donationId = getArguments().getInt(ARG_DONATION);
+                String donationId = getArguments().getString(ARG_DONATION);
                 donation = Donation.findDonationById(donationId);
             }
         } catch (NullPointerException e) {

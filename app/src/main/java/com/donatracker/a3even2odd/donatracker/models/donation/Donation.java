@@ -35,7 +35,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
     /**
      * The amount of donations that have been made.
      */
-    private static int numDonations = 0;
+    private static int numDonations;
 
     /**
      * Location of the persistent save file containing donation data.
@@ -225,13 +225,13 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      * @param id DonationId
      * @return Donation
      */
-    public static Donation findDonationById(int id) {
+    public static Donation findDonationById(String id) {
         for (Donation d : donations) {
-            if (d.getDonationId() == id) {
+            if (d.getTimeStamp().equals(id)) {
                 return d;
             }
         }
-        Log.d("Details", "Didnt find id " + id);
+        Log.d("Details", "Didn't find id " + id);
         return null;
     }
 
