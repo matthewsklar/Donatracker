@@ -17,6 +17,22 @@ public class Locations implements Serializable {
      */
     private String name;
     /**
+     * Latitude of location
+     */
+    private double latitude;
+    /**
+     * Longitude of location
+     */
+    private double longitude;
+    /**
+     * The phone number of the location
+     */
+    private String phone;
+    /**
+     * Type of Location
+     */
+    private String type;
+    /**
      * an array of the location details
      * data[0]:  key
      * data[1]:  name
@@ -57,6 +73,42 @@ public class Locations implements Serializable {
     }
 
     /**
+     * Getter for latitude
+     *
+     * @return latitude of the location
+     */
+    public double getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * Getter for longitude
+     *
+     * @return Longitude of the location
+     */
+    public double getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * Getter for phone
+     *
+     * @return Phone number of
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * Getter for type
+     *
+     * @return the type of the location
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
      * getter for location data
      *
      * @return location data array
@@ -64,6 +116,7 @@ public class Locations implements Serializable {
     public String[] getData() {
         return data;
     }
+
 
     /**
      * getter for location id
@@ -92,6 +145,10 @@ public class Locations implements Serializable {
     public Locations(String name, String[] locData) {
         this.name = name;
         data = locData;
+        latitude = Double.parseDouble(locData[2]);
+        longitude = Double.parseDouble(locData[3]);
+        phone = locData[9];
+        type = locData[8];
         locList.add(this);
     }
 

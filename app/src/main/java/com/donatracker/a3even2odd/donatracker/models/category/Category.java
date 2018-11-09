@@ -92,6 +92,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param savedCategory the donations saved in persistent data
      */
     public static void load(Collection<Category> savedCategory) {
+
         if (savedCategory == null) return;
 
         categories.addAll(savedCategory);
