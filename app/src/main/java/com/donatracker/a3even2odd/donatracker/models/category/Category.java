@@ -2,7 +2,6 @@ package com.donatracker.a3even2odd.donatracker.models.category;
 
 import android.support.annotation.NonNull;
 
-import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 
 import java.io.Serializable;
@@ -72,12 +71,12 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     }
 
     /**
-     * Constructor.
+     * Constructor for category.
      *
      * @param name name of the category
      */
     public Category(String name) {
-        if (categoryExists(name)) return;
+        if (!validCategory(name)) return;
 
         this.name = name;
 
@@ -93,9 +92,21 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param savedCategory the donations saved in persistent data
      */
     public static void load(Collection<Category> savedCategory) {
+
         if (savedCategory == null) return;
 
         categories.addAll(savedCategory);
+    }
+
+    /**
+     * Check if the category's name is valid.
+     *
+     * A valid name is a non-blank name that does not already exist.
+     *
+     * @return if the category's name is valid
+     */
+    private boolean validCategory(String name) {
+        return !categoryExists(name) && !emptyName(name);
     }
 
     /**
@@ -112,6 +123,15 @@ public class Category implements Serializable, Persistable<Category>, Comparable
         }
 
         return false;
+    }
+
+    /**
+     * Check if the category's name is empty.
+     *
+     * @return if the category's name is empty
+     */
+    private boolean emptyName(String name) {
+        return "".equals(name);
     }
 
     @Override
