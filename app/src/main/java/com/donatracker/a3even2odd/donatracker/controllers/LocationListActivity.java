@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class LocationListActivity extends AppCompatActivity {
      */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         Log.d("location_data", "setupRecyclerView ran");
-        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
+        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList(), Donation.getDonations()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -59,7 +60,7 @@ public class LocationListActivity extends AppCompatActivity {
          *
          * @param locations list of elements(locations) for recyclerView
          */
-        RecyclerViewAdapter(List<Locations> locations) {
+        RecyclerViewAdapter(List<Locations> locations, List<Donation> donations) {
             Log.d("location_data", "Adapter constructor " + locations.get(1).toString());
             locList = locations;
         }
@@ -89,7 +90,6 @@ public class LocationListActivity extends AppCompatActivity {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationDetailActivity.class);
                     intent.putExtra(LocationDetailFragment.ARG_LOCATION_ID, holder.location.getLocationId());
-
                     context.startActivity(intent);
                 }
             });
@@ -123,7 +123,4 @@ public class LocationListActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
 }

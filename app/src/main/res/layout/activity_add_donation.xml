@@ -7,7 +7,7 @@
     tools:context=".controllers.AddDonationActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayoutDonationAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -17,17 +17,41 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textAddDonation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add @string/action_select_login Donation"
+            android:text="Add Donation"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="@string/addDonation" />
+
+        <TextView
+            android:id="@+id/textDonationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/queryDonationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textEmptyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cannot be empty"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textDonationLocation"
@@ -127,7 +151,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/textCategory"
+            android:id="@+id/textDonationViewLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Category" />

@@ -1,110 +1,64 @@
 package com.donatracker.a3even2odd.donatracker.controllers;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DonationFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DonationFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class DonationFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final String ARG_DONATION = "arg_donation";
 
-    private OnFragmentInteractionListener mListener;
+    private Donation donation;
 
-    public DonationFragment() {
-        // Required empty public constructor
-    }
+    //private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DonationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DonationFragment newInstance(String param1, String param2) {
-        DonationFragment fragment = new DonationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+        //sets locationId and location
+        // based on argument passed in from LocationDetailActivity
+        try {
+            if (getArguments().containsKey(ARG_DONATION)) {
+                String donationId = getArguments().getString(ARG_DONATION);
+                donation = Donation.findDonationById(donationId);
+            }
+        } catch (NullPointerException e) {
+            Log.e("Location_Detail", e.toString());
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_donation, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_donation, container, false);
+        Log.d("Detail", "View created");
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        //sets location data into views
+        if (donation != null) {
+            ((TextView) view.findViewById(R.id.textTimeStamp)).setText(donation.getTimeStamp());
+            ((TextView) view.findViewById(R.id.textLocation)).setText(donation.getLocation().toString());
+            ((TextView) view.findViewById(R.id.textDescriptionShort)).setText(donation.getDescriptionShort());
+            ((TextView) view.findViewById(R.id.textValue)).setText(donation.getValue());
+            ((TextView) view.findViewById(R.id.textFullDescription)).setText(donation.getDescriptionFull());
+            ((TextView) view.findViewById(R.id.textComment)).setText(donation.getComment());
+            ((TextView) view.findViewById(R.id.textDonationViewLocation)).setText(donation.getCategory().toString());
         }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        return view;
     }
 }

@@ -17,6 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static boolean var = true;
+    public Locations badLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onViewDonationsPressed(View v) {
         Intent viewDonationsIntent = new Intent(this, ViewDonationsActivity.class);
-
         startActivity(viewDonationsIntent);
     }
 
@@ -101,6 +101,17 @@ public class MainActivity extends AppCompatActivity {
         Intent locationListIntent = new Intent(this, LocationListActivity.class);
 
         startActivity(locationListIntent);
+    }
+
+    /**
+     * Handler for Map Button
+     *
+     * @param v the button
+     */
+    public void onMapPressed(View v) {
+        Intent mapIntent = new Intent(this,MapsActivity.class);
+
+        startActivity(mapIntent);
     }
 
     /**

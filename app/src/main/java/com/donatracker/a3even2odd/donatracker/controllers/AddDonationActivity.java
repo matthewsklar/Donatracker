@@ -10,15 +10,24 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * Controller for activity_add_donation view.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class AddDonationActivity extends Activity {
     /**
      * Spinner containing all possible locations for the donation.
@@ -80,6 +89,7 @@ public class AddDonationActivity extends Activity {
      */
     public void onAddDonationPressed(View v) {
         // Required fields
+        TextInputEditText name = findViewById(R.id.queryDonationName);
         TextInputEditText descriptionShort = findViewById(R.id.inputDescriptionShort);
         TextInputEditText descriptionFull = findViewById(R.id.inputDescriptionFull);
         EditText value = findViewById(R.id.inputValue);
@@ -88,12 +98,14 @@ public class AddDonationActivity extends Activity {
         TextInputEditText comment = findViewById(R.id.inputComments);
 
         // Get text of fields
+        Editable nameText = name.getText();
         Editable descriptionShortText = descriptionShort.getText();
         Editable descriptionFullText = descriptionFull.getText();
         Editable valueText = value.getText();
         Editable commentText = comment.getText();
 
         HashMap<Editable, View> data = new HashMap<>(3);
+        data.put(nameText, findViewById(R.id.textEmptyName));
         data.put(descriptionShortText, findViewById(R.id.textEmptyDescriptionShort));
         data.put(descriptionFullText, findViewById(R.id.textEmptyDescriptionFull));
         data.put(valueText, findViewById(R.id.textEmptyValue));
@@ -101,11 +113,16 @@ public class AddDonationActivity extends Activity {
         Donation donate = new Donation();
 
         if (donate.validateData(data)) {
-            donate.addDonation((Locations) locationSpinner.getSelectedItem(),
+            donate.addDonation(nameText, (Locations) locationSpinner.getSelectedItem(),
                     descriptionShortText, descriptionFullText, valueText,
                     (Category) categorySpinner.getSelectedItem(), commentText);
 
             Log.d("Donation", "Added Donation: " + donate.toString());
+
+            Toast.makeText(this, "Donation Added", Toast.LENGTH_SHORT).show();
+
+            Persistence.getInstance().write(Donation.getSaveFile(), getApplicationContext(),
+                    donate);
 
             finish();
         }

@@ -8,14 +8,22 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.donatracker.a3even2odd.donatracker.R;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 import com.donatracker.a3even2odd.donatracker.models.register.Register;
 import com.donatracker.a3even2odd.donatracker.models.user.User;
 import com.donatracker.a3even2odd.donatracker.models.user.UserTypes;
 
+/**
+ * View for registration screen.
+ *
+ * @author Matthew Sklar
+ * @version 1.0
+ * @since 1.0
+ */
 public class RegistrationActivity extends AppCompatActivity {
-
     private Spinner userTypeSpinner;
 
     @Override
@@ -43,15 +51,19 @@ public class RegistrationActivity extends AppCompatActivity {
         if(!register.assertPassword()) {
             passwordCheck.setVisibility(View.VISIBLE);
         } else {
-            passwordCheck.setVisibility(View.INVISIBLE);
+            passwordCheck.setVisibility(View.GONE);
         }
         if (!register.assertUsername()) {
             errorUsername.setVisibility(View.VISIBLE);
         } else {
-            errorUsername.setVisibility(View.INVISIBLE);
+            errorUsername.setVisibility(View.GONE);
         }
         if(register.assertUsername() && register.assertPassword()) {
             User user = new User(username, password, (UserTypes)userTypeSpinner.getSelectedItem());
+
+            Toast.makeText(this, "Account Added", Toast.LENGTH_SHORT).show();
+
+            Persistence.getInstance().write(User.SAVE_FILE, getApplicationContext(), user);
 
             Intent mainIntent = new Intent(this, MainActivity.class);
             mainIntent.putExtra("EXTRA_USER_TYPE", user.getAccountType());

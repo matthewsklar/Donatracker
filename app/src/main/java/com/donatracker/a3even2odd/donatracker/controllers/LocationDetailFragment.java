@@ -52,12 +52,12 @@ public class LocationDetailFragment extends Fragment {
         if (location != null) {
             Log.d("Detail", "Location non null");
             Log.d("Detail", "location" + location.getAddress());
-            ((TextView) view.findViewById(R.id.location_name)).setText(location.getName());
-            ((TextView) view.findViewById(R.id.location_type)).setText(location.getData()[8]);
-            ((TextView) view.findViewById(R.id.location_long)).setText(location.getData()[3]);
-            ((TextView) view.findViewById(R.id.location_lat)).setText(location.getData()[2]);
+            ((TextView) view.findViewById(R.id.location_name))   .setText(location.getName());
+            ((TextView) view.findViewById(R.id.location_type))   .setText(location.getData()[8]);
+            ((TextView) view.findViewById(R.id.location_long))   .setText(location.getData()[3]);
+            ((TextView) view.findViewById(R.id.location_lat))    .setText(location.getData()[2]);
             ((TextView) view.findViewById(R.id.location_address)).setText(location.getAddress());
-            ((TextView) view.findViewById(R.id.location_phone)).setText(location.getData()[9]);
+            ((TextView) view.findViewById(R.id.location_phone))  .setText(location.getData()[9]);
         }
         return view;
     }

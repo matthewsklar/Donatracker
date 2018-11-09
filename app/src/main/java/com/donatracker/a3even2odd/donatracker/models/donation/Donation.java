@@ -6,12 +6,17 @@ import android.view.View;
 
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
+import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
+import com.donatracker.a3even2odd.donatracker.models.query.Queryable;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -21,11 +26,36 @@ import java.util.Locale;
  * @version 1.0
  * @since 1.0
  */
-public class Donation {
+public class Donation implements Serializable, Queryable, Persistable<Donation> {
     /**
      * Global list of all the donations.
      */
     private static LinkedList<Donation> donations = new LinkedList<>();
+
+    /**
+     * The amount of donations that have been made.
+     */
+    private static int numDonations;
+
+    /**
+     * Location of the persistent save file containing donation data.
+     */
+    private static String saveFile = "donation_data.bin";
+
+    /**
+     * Local copy of donations.
+     */
+    private LinkedList<Donation> donationsCopy = new LinkedList<>();
+
+    /**
+     * ID of donation so we can find it and put em in a list
+     */
+    private int donationId;
+
+    /**
+     * Name of the donation.
+     */
+    private String name;
 
     /**
      * The timestamp of when the donation was made.
@@ -65,9 +95,29 @@ public class Donation {
     /* Getters and Setters */
     /**
      * Getter for donations.
+     *
+     * @return donations
      */
-    public static LinkedList<Donation> getDonations() {
+    public static List<Donation> getDonations() {
         return donations;
+    }
+
+    /**
+     * Getter for saveFile.
+     *
+     * @return saveFile
+     */
+    public static String getSaveFile() {
+        return saveFile;
+    }
+
+    /**
+     * Getter for DonationId
+     *
+     * @return donationId
+     */
+    public int getDonationId() {
+        return donationId;
     }
 
     /**
@@ -77,6 +127,15 @@ public class Donation {
      */
     public String getTimeStamp() {
         return timeStamp;
+    }
+
+    /**
+     * Getter for name.
+     *
+     * @return name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -147,6 +206,36 @@ public class Donation {
     }
 
     /**
+     * Load the saved donation into the current donation.
+     *
+     * Add the saved donations data of donations to the current projects list of donations.
+     *
+     * @param savedDonation the donations saved in persistent data
+     */
+    public static void load(LinkedList<Donation> savedDonation) {
+        if (savedDonation == null) return;
+
+        donations.addAll(savedDonation);
+    }
+
+    /**
+     * TODO: optimize so not O(n) maybe
+     * finds donation by id
+     *
+     * @param id DonationId
+     * @return Donation
+     */
+    public static Donation findDonationById(String id) {
+        for (Donation d : donations) {
+            if (d.getTimeStamp().equals(id)) {
+                return d;
+            }
+        }
+        Log.d("Details", "Didn't find id " + id);
+        return null;
+    }
+
+    /**
      * Test the validity of an individual piece of the data that will be added to donation.
      *
      * Data is considered valid if neither it nor the object containing it are null. If the data is
@@ -203,14 +292,17 @@ public class Donation {
     /**
      * Add the donation to the data structure.
      *
+     * @param name name of the donation
      * @param location where the donation was made
      * @param descriptionShort short description of the donation
      * @param descriptionFull full description of the donation
      * @param value amount donated (in dollars)
      * @param category category of the donation
      */
-    public void addDonation(Locations location, Editable descriptionShort, Editable descriptionFull,
-                            Editable value, Category category, Editable comment) {
+    public void addDonation(Editable name, Locations location, Editable descriptionShort,
+                            Editable descriptionFull, Editable value, Category category,
+                            Editable comment) {
+        this.name = name.toString();
         this.timeStamp = getDate();
         this.location = location;
         this.descriptionShort = descriptionShort.toString();
@@ -218,14 +310,37 @@ public class Donation {
         this.value = value.toString();
         this.category = category;
         this.comment = comment.toString();
+        donationId = numDonations++;
+
+        Log.d("donation","Description:  " + descriptionShort.toString());
 
         donations.addFirst(this);
+
+        donations.getLast().donationsCopy.clear();
+        donationsCopy.addAll(donations);
+
+        location.addInventory(this);
+    }
+
+    @Override
+    public List<Donation> getPersistentData() {
+        return donationsCopy;
+    }
+
+    @Override
+    public List<String> queryData() {
+        ArrayList<String> queryList = new ArrayList<>();
+        queryList.add(location.toString());
+        queryList.add(category.toString());
+        queryList.add(name);
+
+        return queryList;
     }
 
     @Override
     public String toString() {
-        return String.format("{ Time Stamp: %s, Location: %s, Short Description: %s, " +
-                "Full Description: %s, Category: %s, Comment: %s }",
-                timeStamp, location, descriptionShort, descriptionFull, category, comment);
+        return String.format("{ Name: %s, Time Stamp: %s, Location: %s, Short Description: %s, " +
+                "Full Description: %s, Category: %s, Comment: %s }", name, timeStamp, location,
+                descriptionShort, descriptionFull, category, comment);
     }
 }
