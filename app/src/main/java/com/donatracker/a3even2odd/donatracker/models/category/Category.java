@@ -1,9 +1,7 @@
 package com.donatracker.a3even2odd.donatracker.models.category;
 
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
-import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 
 import java.io.Serializable;
