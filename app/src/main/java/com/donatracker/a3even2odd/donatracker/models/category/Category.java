@@ -135,7 +135,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param name the name of the new category
      * @return if the category already exists
      */
-    private boolean categoryExists(String name) {
+    public static boolean categoryExists(String name) {
         for (Category c : categories) {
             if (name.equals(c.getName())) {
                 return true;

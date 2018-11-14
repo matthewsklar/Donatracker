@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * JUnit testers for Category methods.
  *
- * @author Matthew Sklar
+ * @author Matthew Sklar, Matthew Weissel
  * @version 1.0
  * @since 1.0
  */
@@ -61,5 +61,19 @@ public class CategoryUnitTest {
         new Category("");
 
         assertEquals(origSize + 1, Category.getCategories().size());
+    }
+
+
+
+    /*
+     * A tester for the categoryExists method.
+     */
+    public void testCategoryExists() {
+
+        String existant = Category.getCategories().get(0).getName();
+        String nonExistant = "";
+        
+        assertTrue(Category.categoryExists(existant));
+        assertFalse(Category.categoryExists(nonExistant));
     }
 }
