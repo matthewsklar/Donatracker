@@ -28,8 +28,8 @@ public class StringEncryption {
      * Generates randomized salt value to be hashed with a passed String.
      *
      * @param length the length of the salt value to generate
-     * @return a randomized salt value of the specified length consisting of characters contained in the
-     *         SALT_ALPHABET String.
+     * @return a randomized salt value of the specified length consisting of characters
+     * contained in the SALT_ALPHABET String.
      */
     public static String generateSalt(int length) {
 
@@ -42,8 +42,9 @@ public class StringEncryption {
     }
 
     /**
-     * Runs passed text through a hash function (PBKDF2, with Hmac + SHA1 as the pseudo-random function)
-     * and returns an array of byte containing an encrypted version of the passed text
+     * Runs passed text through a hash function (PBKDF2, with Hmac + SHA1 as the
+     * pseudo-random function) and returns an array of byte containing an encrypted version
+     * of the passed text.
      *
      * @param text an array of characters to be hashed
      * @param salt an array containing a generated salt value to be included in the hashing of the

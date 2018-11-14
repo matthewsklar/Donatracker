@@ -23,7 +23,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     private static LinkedList<Category> categories = new LinkedList<>();
 
     /**
-     * The the recent category added.
+     * The most recent category added.
      */
     private static Category recentCategory;
 
@@ -35,7 +35,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     /**
      * Local copy of categories.
      */
-    private LinkedList<Category> categoryCopy = new LinkedList<>();
+    private List<Category> categoryCopy = new LinkedList<>();
 
     /**
      * The name of the category.
@@ -76,14 +76,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param name name of the category
      */
     public Category(String name) {
-        if (!validCategory(name)) return;
-
-        this.name = name;
-
-        categories.add(this);
-        recentCategory = this;
-        categoryCopy.clear();
-        categoryCopy.addAll(categories);
+        addCategory(name);
     }
 
     /**
@@ -98,6 +91,31 @@ public class Category implements Serializable, Persistable<Category>, Comparable
         if (savedCategory == null) return;
 
         categories.addAll(savedCategory);
+    }
+
+    /**
+     * Get the index of the most recently added category.
+     *
+     * @return index of the most recently added category.
+     */
+    public static int indexOfRecentCategory() {
+        return categories.indexOf(recentCategory);
+    }
+
+    /**
+     * Add a category.
+     *
+     * @param name name of the category
+     */
+    private void addCategory(String name) {
+        if (!validCategory(name)) return;
+
+        this.name = name;
+
+        categories.add(this);
+        recentCategory = this;
+        categoryCopy.clear();
+        categoryCopy.addAll(categories);
     }
 
     /**
@@ -119,7 +137,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      */
     private boolean categoryExists(String name) {
         for (Category c : categories) {
-            if (c.getName().equals(name)) {
+            if (name.equals(c.getName())) {
                 return true;
             }
         }

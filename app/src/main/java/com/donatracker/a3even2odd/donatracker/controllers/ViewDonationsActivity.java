@@ -23,6 +23,7 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 import com.donatracker.a3even2odd.donatracker.models.query.Query;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -89,7 +90,7 @@ public class ViewDonationsActivity extends Activity {
     /**
      * Setup the data available in the location query spinner.
      */
-    private void setupSpinner(Spinner spinner, List elements) {
+    private void setupSpinner(Spinner spinner, Collection elements) {
         List spinnerList = new ArrayList(elements.size() + 1);
         spinnerList.add("");
         spinnerList.addAll(elements);
@@ -123,7 +124,7 @@ public class ViewDonationsActivity extends Activity {
         TextView empty = findViewById(R.id.empty);
 
         if (queriedDonations.size() == 0) {
-            empty.setText("No donation matches these conditions.");
+            empty.setText(R.string.no_matching_donations);
             empty.setVisibility(View.VISIBLE);
         } else {
             empty.setVisibility(View.GONE);
@@ -141,7 +142,8 @@ public class ViewDonationsActivity extends Activity {
         setupRecyclerView((RecyclerView) recyclerView, Donation.getDonations());
     }
 
-    public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewDonationsActivity.RecyclerViewAdapter.ViewHolder> {
+    public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewDonationsActivity
+            .RecyclerViewAdapter.ViewHolder> {
 
         /**
          * List of data to be put into recyclerView
@@ -160,7 +162,8 @@ public class ViewDonationsActivity extends Activity {
 
         @NonNull
         @Override
-        public ViewDonationsActivity.RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ViewDonationsActivity.RecyclerViewAdapter.ViewHolder onCreateViewHolder(
+                @NonNull ViewGroup parent, int viewType) {
             //gets view for viewholder
             Log.d("donation", "CreateViewHolder ran");
             View view = LayoutInflater.from(parent.getContext())
@@ -170,12 +173,13 @@ public class ViewDonationsActivity extends Activity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final ViewDonationsActivity.RecyclerViewAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final ViewDonationsActivity
+                .RecyclerViewAdapter.ViewHolder holder, int position) {
             Log.d("donation", "onBindViewHolder ran " + position);
             //sets view for viewholder
             holder.donation = donations.get(position);
 
-            holder.idView.setText("" + (position + 1));
+            holder.idView.setText(getString(R.string.number_list, position + 1));
             holder.contentView.setText((donations.get(position)).getName());
             holder.view.setOnClickListener(new View.OnClickListener() {
                  @Override

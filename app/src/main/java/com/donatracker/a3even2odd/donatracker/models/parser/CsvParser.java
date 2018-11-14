@@ -29,12 +29,13 @@ public final class CsvParser extends Parser {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         try {
-            String csvLine;
+            String csvLine = reader.readLine();
 
-            while ((csvLine = reader.readLine()) != null) {
+            while (csvLine != null) {
                 String[] row = csvLine.split(",");
 
                 resultList.add(row);
+                csvLine = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException("Error in reading CSV file: " + e);

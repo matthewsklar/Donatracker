@@ -17,7 +17,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static boolean var = true;
-    public Locations badLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 break;
-                //throw new IllegalArgumentException("User must be a usertype");
         }
     }
 

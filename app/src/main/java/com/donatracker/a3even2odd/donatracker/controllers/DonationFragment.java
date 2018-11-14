@@ -14,7 +14,6 @@ import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 
 
-
 public class DonationFragment extends Fragment {
 
     public static final String ARG_DONATION = "arg_donation";
@@ -34,8 +33,9 @@ public class DonationFragment extends Fragment {
         //sets locationId and location
         // based on argument passed in from LocationDetailActivity
         try {
-            if (getArguments().containsKey(ARG_DONATION)) {
-                String donationId = getArguments().getString(ARG_DONATION);
+            Bundle arguments = getArguments();
+            if (arguments.containsKey(ARG_DONATION)) {
+                String donationId = arguments.getString(ARG_DONATION);
                 donation = Donation.findDonationById(donationId);
             }
         } catch (NullPointerException e) {
@@ -51,15 +51,19 @@ public class DonationFragment extends Fragment {
 
         //sets location data into views
         if (donation != null) {
-            ((TextView) view.findViewById(R.id.textTimeStamp)).setText(donation.getTimeStamp());
-            ((TextView) view.findViewById(R.id.textLocation)).setText(donation.getLocation().toString());
-            ((TextView) view.findViewById(R.id.textName)).setText(donation.getName());
-            ((TextView) view.findViewById(R.id.textDescriptionShort)).setText(donation.getDescriptionShort());
-            ((TextView) view.findViewById(R.id.textFullDescription)).setText(donation.getDescriptionFull());
-            ((TextView) view.findViewById(R.id.textValue)).setText(donation.getValue());
-            ((TextView) view.findViewById(R.id.textComment)).setText(donation.getComment());
-            ((TextView) view.findViewById(R.id.textDonationViewLocation)).setText(donation.getCategory().toString());
+            showDonation(R.id.textTimeStamp, donation.getTimeStamp(), view);
+            showDonation(R.id.textLocation, donation.getLocation(), view);
+            showDonation(R.id.textName, donation.getName(), view);
+            showDonation(R.id.textDescriptionShort, donation.getDescriptionShort(), view);
+            showDonation(R.id.textFullDescription, donation.getDescriptionFull(), view);
+            showDonation(R.id.textValue, donation.getValue(), view);
+            showDonation(R.id.textComment, donation.getComment(), view);
+            showDonation(R.id.textDonationViewLocation, donation.getCategory(), view);
         }
         return view;
+    }
+
+    private void showDonation(int id, Object text, View view) {
+        ((TextView) view.findViewById(id)).setText(text.toString());
     }
 }

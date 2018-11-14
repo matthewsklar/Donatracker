@@ -28,7 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        // TODO: Maybe move these to loading screen
         loadConfigs();
         loadPersistentData();
     }

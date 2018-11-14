@@ -2,6 +2,7 @@ package com.donatracker.a3even2odd.donatracker.models.user;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Code implementation of users.
@@ -19,12 +20,12 @@ public class User implements Serializable/*, Persistable<User> */ {
     /**
      * Map of users mapped by accountId(username).
      */
-    private static HashMap<String, User> users = new HashMap<>();
+    private static Map<String, User> users = new HashMap<>();
 
     /**
      * Local copy of users.
      */
-    private HashMap<String, User> usersCopy = new HashMap<>();
+    private Map<String, User> usersCopy = new HashMap<>();
 
     /**
      * the Id of the user. currently saved as the username
@@ -44,7 +45,7 @@ public class User implements Serializable/*, Persistable<User> */ {
      *
      * @return Map of all users
      */
-    public static HashMap<String, User> getUsers() { return users; }
+    public static Map<String, User> getUsers() { return users; }
 
     /**
      * getter for accountId
@@ -107,7 +108,7 @@ public class User implements Serializable/*, Persistable<User> */ {
      *
      * @param savedUser the users saved in persistent data
      */
-    public static void load(HashMap<String, User> savedUser) {
+    public static void load(Map<String, User> savedUser) {
         if (savedUser == null) return;
 
         users.putAll(savedUser);
@@ -118,14 +119,8 @@ public class User implements Serializable/*, Persistable<User> */ {
      *
      * @return persistent data of the user
      */
-    public HashMap<String, User> getPersistentData() {
+    public Map<String, User> getPersistentData() {
         return usersCopy;
     }
 
-    /*
-    @Override
-    public HashMap<String, User> getPersistentData() {
-        return usersCopy;
-    }
-    */
 }

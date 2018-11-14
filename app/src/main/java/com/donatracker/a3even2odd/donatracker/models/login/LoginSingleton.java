@@ -70,7 +70,7 @@ public class LoginSingleton {
     /**
      * Constructor for LoginSingleton
      */
-    private LoginSingleton() {
+    public LoginSingleton() {
         lockoutData = new LockoutData();
     }
 }
