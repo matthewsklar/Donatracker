@@ -76,14 +76,7 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param name name of the category
      */
     public Category(String name) {
-        if (!validCategory(name)) return;
-
-        this.name = name;
-
-        categories.add(this);
-        recentCategory = this;
-        categoryCopy.clear();
-        categoryCopy.addAll(categories);
+        addCategory(name);
     }
 
     /**
@@ -107,6 +100,22 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      */
     public static int indexOfRecentCategory() {
         return categories.indexOf(recentCategory);
+    }
+
+    /**
+     * Add a category.
+     *
+     * @param name name of the category
+     */
+    private void addCategory(String name) {
+        if (!validCategory(name)) return;
+
+        this.name = name;
+
+        categories.add(this);
+        recentCategory = this;
+        categoryCopy.clear();
+        categoryCopy.addAll(categories);
     }
 
     /**
