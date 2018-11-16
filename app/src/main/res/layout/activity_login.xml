@@ -82,54 +82,73 @@
             android:textColor="@color/colorAccent"
             android:visibility="gone" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="11dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <ImageButton
-            android:id="@+id/button_login_back"
-            android:layout_width="121dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#00ffffff"
-            android:contentDescription="@string/back"
-            android:onClick="onCancelPressed"
-            android:padding="12dp"
-            android:scaleType="fitCenter"
-            android:tint="@android:color/black"
-            android:visibility="visible"
-            app:srcCompat="@drawable/back_button_icon" />
-
-        <Button
-            android:id="@+id/button_login"
+        <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageButton
+                android:id="@+id/button_login_back"
+                android:layout_width="121dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:contentDescription="@string/back"
+                android:onClick="onCancelPressed"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:tint="@android:color/black"
+                android:visibility="visible"
+                app:srcCompat="@drawable/back_button_icon" />
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:background="@color/colorButton"
+                android:onClick="onLoginPressed"
+                android:text="@string/action_select_login"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.294" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/button_login3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:background="@color/colorButton"
-            android:onClick="onLoginPressed"
-            android:text="@string/action_select_login"
+            android:onClick="onGuestLoginPressed"
+            android:text="@string/action_select_guest_login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.294" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

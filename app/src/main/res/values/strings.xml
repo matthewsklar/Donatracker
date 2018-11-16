@@ -37,4 +37,5 @@
     <string name="addDonation">Add a Donation</string>
     <string name="title_activity_add_category">AddCategoryActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="action_select_guest_login">Login as Guest</string>
 </resources>

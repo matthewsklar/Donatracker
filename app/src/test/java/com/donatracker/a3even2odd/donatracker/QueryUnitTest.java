@@ -40,7 +40,7 @@ public class QueryUnitTest {
             queryList2.add("category");
             queryList2.add("donation");
 
-        List<String> queryList3 =  new ArrayList<>();   //missing a parameter
+        List<String> queryList3 =  new ArrayList<>();   //Parameter doesn't match data
             queryList3.add("location");
             queryList3.add("category");
             queryList3.add("difference");

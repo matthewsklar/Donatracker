@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.login.Login;
 import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
+import com.donatracker.a3even2odd.donatracker.models.user.UserTypes;
 
 /**
  * Activity for login screen.
@@ -68,6 +69,21 @@ public class LoginActivity extends AppCompatActivity {
 
             error.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * Button handler for guest login.
+     *
+     * When login as guest is pressed, login as default user.
+     *
+     * @param v the button
+     */
+    public void onGuestLoginPressed(View v) {
+        Intent mainIntent = new Intent(this, MainActivity.class);
+        mainIntent.putExtra("EXTRA_USER_TYPE", UserTypes.USER);
+        startActivity(mainIntent);
+
+        finish();
     }
 
     /**

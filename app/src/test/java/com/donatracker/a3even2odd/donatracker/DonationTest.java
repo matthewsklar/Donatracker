@@ -2,19 +2,15 @@ package com.donatracker.a3even2odd.donatracker;
 
 
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
-import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import org.junit.Test;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 import static com.donatracker.a3even2odd.donatracker.models.donation.Donation.load;
 import static org.junit.Assert.*;
 
 public class DonationTest {
-
-
 
     @Test
     public void loadTest() {
@@ -28,7 +24,6 @@ public class DonationTest {
        donationfull.add(new Donation());
 
        load(donationfull);
-       //assertFalse(Donation.getDonations().isEmpty());
        assertEquals(Donation.getDonations().size(), 1);
     }
 }

@@ -9,7 +9,7 @@ import java.io.InputStream;
  * @version 1.0
  * @since 1.0
  */
-public abstract class Parser<E> {
+abstract class Parser<E> {
     /**
      * Path to the location of the file to parse.
      */
@@ -44,7 +44,7 @@ public abstract class Parser<E> {
      *
      * @param inputStream input stream containing the file at loc
      */
-    public Parser(InputStream inputStream) {
+    Parser(InputStream inputStream) {
         this("", inputStream);
     }
 
@@ -54,7 +54,7 @@ public abstract class Parser<E> {
      * @param loc path to the location of the file to parse
      * @param inputStream input stream containing the file at loc
      */
-    public Parser(String loc, InputStream inputStream) {
+    Parser(String loc, InputStream inputStream) {
         this.loc = loc;
         this.inputStream = inputStream;
     }

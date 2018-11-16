@@ -14,8 +14,8 @@ import com.donatracker.a3even2odd.donatracker.models.parser.YamlParser;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistable;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 import com.donatracker.a3even2odd.donatracker.models.user.User;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.InputStream;
@@ -127,89 +127,89 @@ public class WelcomeActivity extends AppCompatActivity {
 
         startActivity(registrationIntent);
     }
-//
-//    /**
-//     * Create instances of StoreReference.
-//     */
-//    public void includesForCreateReference() {
-//
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        // ## Create a Reference
-//
-//        // [START create_storage_reference]
-//        // Create a storage reference from our app
-//        StorageReference storageRef = storage.getReference();
-//        // [END create_storage_reference]
-//
-//        // [START create_child_reference]
-//        // Create a child reference
-//        // imagesRef now points to "images"
-//        StorageReference imagesRef = storageRef.child("images");
-//
-//        // Child references can also take paths
-//        // spaceRef now points to "images/space.jpg
-//        // imagesRef still points to "images"
-//        StorageReference spaceRef = storageRef.child("images/space.jpg");
-//        // [END create_child_reference]
-//
-//        // ## Navigate with References
-//
-//        // [START navigate_references]
-//        // getParent allows us to move our reference to a parent node
-//        // imagesRef now points to 'images'
-//        imagesRef = spaceRef.getParent();
-//
-//        // getRoot allows us to move all the way back to the top of our bucket
-//        // rootRef now points to the root
-//        StorageReference rootRef = spaceRef.getRoot();
-//        // [END navigate_references]
-//
-//        // [START chain_navigation]
-//        // References can be chained together multiple times
-//        // earthRef points to 'images/earth.jpg'
-//        StorageReference earthRef = spaceRef.getParent().child("earth.jpg");
-//
-//        // nullRef is null, since the parent of root is null
-//        StorageReference nullRef = spaceRef.getRoot().getParent();
-//        // [END chain_navigation]
-//
-//        // ## Reference Properties
-//
-//        // [START reference_properties]
-//        // Reference's path is: "images/space.jpg"
-//        // This is analogous to a file path on disk
-//        spaceRef.getPath();
-//
-//        // Reference's name is the last segment of the full path: "space.jpg"
-//        // This is analogous to the file name
-//        spaceRef.getName();
-//
-//        // Reference's bucket is the name of the storage bucket that the files are stored in
-//        spaceRef.getBucket();
-//        // [END reference_properties]
-//
-//        // ## Full Example
-//
-//        // [START reference_full_example]
-//        // Points to the root reference
-//        storageRef = storage.getReference();
-//
-//        // Points to "images"
-//        imagesRef = storageRef.child("images");
-//
-//        // Points to "images/space.jpg"
-//        // Note that you can use variables to create child values
-//        String fileName = "space.jpg";
-//        spaceRef = imagesRef.child(fileName);
-//
-//        // File path is "images/space.jpg"
-//        String path = spaceRef.getPath();
-//
-//        // File name is "space.jpg"
-//        String name = spaceRef.getName();
-//
-//        // Points to "images"
-//        imagesRef = spaceRef.getParent();
-//        // [END reference_full_example]
-//    }
+
+    /**
+     * Create instances of StoreReference.
+     */
+    public void includesForCreateReference() {
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        // ## Create a Reference
+
+        // [START create_storage_reference]
+        // Create a storage reference from our app
+        StorageReference storageRef = storage.getReference();
+        // [END create_storage_reference]
+
+        // [START create_child_reference]
+        // Create a child reference
+        // imagesRef now points to "images"
+        StorageReference imagesRef = storageRef.child("images");
+
+        // Child references can also take paths
+        // spaceRef now points to "images/space.jpg
+        // imagesRef still points to "images"
+        StorageReference spaceRef = storageRef.child("images/space.jpg");
+        // [END create_child_reference]
+
+        // ## Navigate with References
+
+        // [START navigate_references]
+        // getParent allows us to move our reference to a parent node
+        // imagesRef now points to 'images'
+        imagesRef = spaceRef.getParent();
+
+        // getRoot allows us to move all the way back to the top of our bucket
+        // rootRef now points to the root
+        StorageReference rootRef = spaceRef.getRoot();
+        // [END navigate_references]
+
+        // [START chain_navigation]
+        // References can be chained together multiple times
+        // earthRef points to 'images/earth.jpg'
+        StorageReference earthRef = spaceRef.getParent().child("earth.jpg");
+
+        // nullRef is null, since the parent of root is null
+        StorageReference nullRef = spaceRef.getRoot().getParent();
+        // [END chain_navigation]
+
+        // ## Reference Properties
+
+        // [START reference_properties]
+        // Reference's path is: "images/space.jpg"
+        // This is analogous to a file path on disk
+        spaceRef.getPath();
+
+        // Reference's name is the last segment of the full path: "space.jpg"
+        // This is analogous to the file name
+        spaceRef.getName();
+
+        // Reference's bucket is the name of the storage bucket that the files are stored in
+        spaceRef.getBucket();
+        // [END reference_properties]
+
+        // ## Full Example
+
+        // [START reference_full_example]
+        // Points to the root reference
+        storageRef = storage.getReference();
+
+        // Points to "images"
+        imagesRef = storageRef.child("images");
+
+        // Points to "images/space.jpg"
+        // Note that you can use variables to create child values
+        String fileName = "space.jpg";
+        spaceRef = imagesRef.child(fileName);
+
+        // File path is "images/space.jpg"
+        String path = spaceRef.getPath();
+
+        // File name is "space.jpg"
+        String name = spaceRef.getName();
+
+        // Points to "images"
+        imagesRef = spaceRef.getParent();
+        // [END reference_full_example]
+    }
 }
