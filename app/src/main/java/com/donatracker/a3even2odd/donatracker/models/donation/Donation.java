@@ -214,7 +214,9 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      * @param savedDonation the donations saved in persistent data
      */
     public static void load(Collection<Donation> savedDonation) {
-        if (savedDonation == null) return;
+        if (savedDonation == null) {
+            return;
+        }
 
         donations.addAll(savedDonation);
     }
@@ -249,7 +251,9 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      */
     private boolean testValidity(Editable test, View view)
             throws NullPointerException {
-        if (test == null) throw new NullPointerException("Editable cannot be null");
+        if (test == null) {
+            throw new NullPointerException("Editable cannot be null");
+        }
 
         if ("".equals(test.toString())) {
             view.setVisibility(View.VISIBLE);
@@ -298,6 +302,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      * @param descriptionFull full description of the donation
      * @param value amount donated (in dollars)
      * @param category category of the donation
+     * @param comment any extra information about the donation
      */
     public void addDonation(Editable name, Locations location, Editable descriptionShort,
                             Editable descriptionFull, Editable value, Category category,

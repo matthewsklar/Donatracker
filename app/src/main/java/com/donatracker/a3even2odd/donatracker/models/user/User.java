@@ -109,7 +109,9 @@ public class User implements Serializable/*, Persistable<User> */ {
      * @param savedUser the users saved in persistent data
      */
     public static void load(Map<String, User> savedUser) {
-        if (savedUser == null) return;
+        if (savedUser == null) {
+            return;
+        }
 
         users.putAll(savedUser);
     }

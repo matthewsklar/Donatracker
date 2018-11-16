@@ -164,7 +164,7 @@ public class ViewDonationsActivity extends Activity {
         @Override
         public ViewDonationsActivity.RecyclerViewAdapter.ViewHolder onCreateViewHolder(
                 @NonNull ViewGroup parent, int viewType) {
-            //gets view for viewholder
+            //gets view for ViewHolder
             Log.d("donation", "CreateViewHolder ran");
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.view_donation_content, parent, false);
@@ -176,7 +176,7 @@ public class ViewDonationsActivity extends Activity {
         public void onBindViewHolder(@NonNull final ViewDonationsActivity
                 .RecyclerViewAdapter.ViewHolder holder, int position) {
             Log.d("donation", "onBindViewHolder ran " + position);
-            //sets view for viewholder
+            //sets view for ViewHolder
             holder.donation = donations.get(position);
 
             holder.idView.setText(getString(R.string.number_list, position + 1));

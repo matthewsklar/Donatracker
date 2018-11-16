@@ -143,7 +143,9 @@ public class Login {
      * @return if the username is valid
      */
     private boolean verifyUsername() {
-        if ("".equals(username)) return false;
+        if ("".equals(username)) {
+            return false;
+        }
 
         return getUsers().containsKey(username);
     }
@@ -154,7 +156,9 @@ public class Login {
      * @return if the password is valid
      */
     private boolean verifyPassword() {
-        if ("".equals(password)) return false;
+        if ("".equals(password)) {
+            return false;
+        }
 
         return password.equals(getUsers().get(username).getPassword());
     }

@@ -88,7 +88,9 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      */
     public static void load(Collection<Category> savedCategory) {
 
-        if (savedCategory == null) return;
+        if (savedCategory == null) {
+            return;
+        }
 
         categories.addAll(savedCategory);
     }
@@ -108,7 +110,9 @@ public class Category implements Serializable, Persistable<Category>, Comparable
      * @param name name of the category
      */
     private void addCategory(String name) {
-        if (!validCategory(name)) return;
+        if (!validCategory(name)) {
+            return;
+        }
 
         this.name = name;
 
@@ -172,5 +176,14 @@ public class Category implements Serializable, Persistable<Category>, Comparable
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other != null) {
+            return other == this;
+        } else {
+            return false;
+        }
     }
 }

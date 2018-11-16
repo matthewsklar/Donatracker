@@ -75,9 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public View getInfoContents(Marker marker) {
 
-            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.mapPinTitle));
+            TextView tvTitle = (myContentsView.findViewById(R.id.mapPinTitle));
             tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.mapSnippet));
+            TextView tvSnippet = (myContentsView.findViewById(R.id.mapSnippet));
             tvSnippet.setText(marker.getSnippet());
 
             return myContentsView;

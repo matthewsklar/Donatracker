@@ -173,7 +173,7 @@ public class Locations implements Serializable {
                 return l;
             }
         }
-        Log.d("Details", "Didnt find id " + locationId);
+        Log.d("Details", "Didn't find id " + locationId);
         return null;
     }
 
