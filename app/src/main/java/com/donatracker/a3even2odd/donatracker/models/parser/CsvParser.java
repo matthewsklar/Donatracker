@@ -25,7 +25,7 @@ public final class CsvParser extends Parser {
     /**
      * Parse the file into a data class.
      */
-    @Override
+    //@Override
     public List<String[]> Parse() {
         InputStream inputStream = getInputStream();
 
@@ -44,12 +44,11 @@ public final class CsvParser extends Parser {
             }
         } catch (IOException e) {
             throw new RuntimeException("Error in reading CSV file: " + e);
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                throw new RuntimeException("Error while closing input stream: " + e);
-            }
+        }
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Error while closing input stream: " + e);
         }
 
         return resultList;

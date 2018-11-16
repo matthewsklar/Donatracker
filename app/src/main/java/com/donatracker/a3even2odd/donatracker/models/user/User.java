@@ -92,15 +92,15 @@ public class User implements Serializable/*, Persistable<User> */ {
         usersCopy.putAll(users);
     }
 
-    /**
-     * User constructor with default userType
-     *
-     * @param username the User's username
-     * @param password the User's password
-     */
-    public User(String username, String password) {
-        this(username, password, UserTypes.USER);
-    }
+//    /**
+//     * User constructor with default userType
+//     *
+//     * @param username the User's username
+//     * @param password the User's password
+//     */
+//    public User(String username, String password) {
+//        this(username, password, UserTypes.USER);
+//    }
 
     /**
      * Load the saved user into the current donation.

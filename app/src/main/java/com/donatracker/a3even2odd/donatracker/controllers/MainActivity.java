@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static boolean var = true;
+    static boolean var = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

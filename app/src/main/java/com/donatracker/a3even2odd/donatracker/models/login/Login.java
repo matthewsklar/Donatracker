@@ -45,23 +45,23 @@ public class Login {
     private Timer timer;
 
     /* Getters and Setters */
-    /**
-     * Getter for username.
-     *
-     * @return username
-     */
-    public String getUsername() {
-        return username;
-    }
+//    /**
+//     * Getter for username.
+//     *
+//     * @return username
+//     */
+//    public String getUsername() {
+//        return username;
+//    }
 
-    /**
-     * Getter for password.
-     *
-     * @return password
-     */
-    public String getPassword() {
-        return password;
-    }
+//    /**
+//     * Getter for password.
+//     *
+//     * @return password
+//     */
+//    public String getPassword() {
+//        return password;
+//    }
 
     /**
      * Getter for userType.

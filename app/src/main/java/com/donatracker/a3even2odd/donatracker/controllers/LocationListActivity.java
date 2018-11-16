@@ -43,8 +43,7 @@ public class LocationListActivity extends AppCompatActivity {
      */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         Log.d("location_data", "setupRecyclerView ran");
-        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList(), Donation
-                .getDonations()));
+        recyclerView.setAdapter(new RecyclerViewAdapter(Locations.getLocList()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -66,7 +65,7 @@ public class LocationListActivity extends AppCompatActivity {
          *
          * @param locations list of elements(locations) for recyclerView
          */
-        RecyclerViewAdapter(List<Locations> locations, List<Donation> donations) {
+        RecyclerViewAdapter(List<Locations> locations) {
             Log.d("location_data", "Adapter constructor " + locations.get(1).toString());
             locList = locations;
         }
@@ -111,7 +110,7 @@ public class LocationListActivity extends AppCompatActivity {
 
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View view;
+            final View view;
             final TextView idView;
             final TextView contentView;
             Locations location;

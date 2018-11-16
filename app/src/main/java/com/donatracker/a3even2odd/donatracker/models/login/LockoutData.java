@@ -49,14 +49,14 @@ public class LockoutData {
         this.attemptReset = attemptReset;
     }
 
-    /**
-     * Getter for lockout.
-     *
-     * @return lockout
-     */
-    public int getLockout() {
-        return lockout;
-    }
+//    /**
+//     * Getter for lockout.
+//     *
+//     * @return lockout
+//     */
+//    public int getLockout() {
+//        return lockout;
+//    }
 
     /**
      * Setter for lockout.
