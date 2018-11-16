@@ -6,7 +6,11 @@ import android.util.Log;
 
 import com.donatracker.a3even2odd.donatracker.R;
 
-
+/**
+ * Activity to view the details of a location.
+ *
+ * @author Nathan Eason
+ */
 public class LocationDetailActivity extends AppCompatActivity {
 
     @Override

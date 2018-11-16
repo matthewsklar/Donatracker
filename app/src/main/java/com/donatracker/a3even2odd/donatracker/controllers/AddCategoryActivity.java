@@ -9,6 +9,11 @@ import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.category.Category;
 import com.donatracker.a3even2odd.donatracker.models.persistance.Persistence;
 
+/**
+ * Activity for adding categories.
+ *
+ * @author Matt Sklar
+ */
 public class AddCategoryActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

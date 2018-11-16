@@ -12,6 +12,11 @@ import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.login.Login;
 import com.donatracker.a3even2odd.donatracker.models.login.LoginSingleton;
 
+/**
+ * Activity for login screen.
+ *
+ * @author Matt Sklar
+ */
 public class LoginActivity extends AppCompatActivity {
     /**
      * Global instance of LoginSingleton containing data about login.

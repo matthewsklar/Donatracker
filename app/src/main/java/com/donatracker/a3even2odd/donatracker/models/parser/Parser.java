@@ -62,6 +62,7 @@ public abstract class Parser<E> {
 
     /**
      * Parse the file into a data class.
+     * @return a list of E
      */
     public abstract List<E> Parse();
 }

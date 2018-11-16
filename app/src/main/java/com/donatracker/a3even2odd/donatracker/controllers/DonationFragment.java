@@ -13,7 +13,11 @@ import android.widget.TextView;
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 
-
+/**
+ * Fragment used to view donations.
+ *
+ * @author Nathan Eason
+ */
 public class DonationFragment extends Fragment {
 
     public static final String ARG_DONATION = "arg_donation";

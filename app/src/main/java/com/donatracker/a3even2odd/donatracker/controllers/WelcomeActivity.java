@@ -22,6 +22,11 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Activity for the welcome screen of the app.
+ *
+ * @author Matt Sklar
+ */
 public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

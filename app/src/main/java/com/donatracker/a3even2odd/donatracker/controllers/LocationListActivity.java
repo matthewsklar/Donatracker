@@ -19,6 +19,11 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.List;
 
+/**
+ * Activity to view a list of locations.
+ *
+ * @author Nathan Eason
+ */
 public class LocationListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
