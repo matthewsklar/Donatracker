@@ -4,6 +4,11 @@ import com.donatracker.a3even2odd.donatracker.models.user.User;
 
 import java.util.Map;
 
+/**
+ * Background class used when registering a user.
+ *
+ * @author Matt Sklar
+ */
 public class Register {
     /**
      * The registrant's username

@@ -12,6 +12,10 @@ import java.util.List;
 public class LoginSingleton {
     private static final LoginSingleton ourInstance = new LoginSingleton();
 
+    /**
+     * Getter for ourInstance
+     * @return the static instance of LoginSingleton
+     */
     public static LoginSingleton getInstance() {
         return ourInstance;
     }

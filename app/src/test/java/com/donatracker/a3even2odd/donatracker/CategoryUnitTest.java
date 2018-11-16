@@ -67,9 +67,10 @@ public class CategoryUnitTest {
 
 
 
-    /*
+    /**
      * A tester for the categoryExists method.
      */
+    @Test
     public void testCategoryExists() {
 
         String existant = Category.getCategories().get(0).getName();

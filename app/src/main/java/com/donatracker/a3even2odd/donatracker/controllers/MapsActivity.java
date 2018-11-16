@@ -17,6 +17,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.donatracker.a3even2odd.donatracker.models.location.Locations.getLocList;
 
+/**
+ * Activity to view the map with location pins.
+ *
+ * @author Nathan Eason
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

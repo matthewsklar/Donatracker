@@ -186,4 +186,9 @@ public class Category implements Serializable, Persistable<Category>, Comparable
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }

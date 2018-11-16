@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to parse CSV file.
+ *
+ * @author Matt Sklar
+ */
 public final class CsvParser extends Parser {
     /**
      * Constructor for Parser

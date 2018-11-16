@@ -79,6 +79,7 @@ public class User implements Serializable/*, Persistable<User> */ {
      *
      * @param username the user's username
      * @param password the user's password
+     * @param accountType the user's UserType
      */
     public User(String username, String password ,UserTypes accountType){
         this.accountId = username;

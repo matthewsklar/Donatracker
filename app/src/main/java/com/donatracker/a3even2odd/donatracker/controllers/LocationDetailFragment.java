@@ -12,7 +12,11 @@ import android.widget.TextView;
 import com.donatracker.a3even2odd.donatracker.R;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
-
+/**
+ * Fragment to view the details of a donation.
+ *
+ * @author Nathan Eason
+ */
 public class LocationDetailFragment extends Fragment {
     /**
      * Location Id passed from LocationListActivity

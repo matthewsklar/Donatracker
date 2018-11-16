@@ -14,6 +14,11 @@ import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Main Acitivty for the main screen of the app.
+ *
+ * @author Matt Sklar
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static boolean var = true;

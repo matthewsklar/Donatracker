@@ -11,6 +11,11 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Location object
+ *
+ * @author Nathan Eason
+ */
 public class Locations implements Serializable {
     /**
      * Name of the location
@@ -177,6 +182,11 @@ public class Locations implements Serializable {
         return null;
     }
 
+    /**
+     * Method which adds a donation to a locations inventory
+     * @param d is a donation
+     * @return true if donation was successfully added to inventory
+     */
     public boolean addInventory(Donation d) {
         return inventory.add(d);
     }

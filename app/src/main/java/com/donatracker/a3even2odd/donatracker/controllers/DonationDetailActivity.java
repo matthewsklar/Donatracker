@@ -6,7 +6,11 @@ import android.util.Log;
 
 import com.donatracker.a3even2odd.donatracker.R;;
 
-
+/**
+ * Activity to view the details of a donation.
+ *
+ * @author Nathan Eason
+ */
 public class DonationDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
