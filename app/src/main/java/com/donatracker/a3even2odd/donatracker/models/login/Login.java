@@ -22,17 +22,17 @@ public class Login {
     /**
      * Global instance of LoginSingleton containing data about login.
      */
-    private LoginSingleton loginSingleton;
+    private final LoginSingleton loginSingleton;
 
     /**
      * The user's username
      */
-    private String username;
+    private final String username;
 
     /**
      * The user's password
      */
-    private String password;
+    private final String password;
 
     /**
      * Type of the user

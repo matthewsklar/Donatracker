@@ -58,7 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
                    Persistence.getInstance().load(Donation.getSaveFile(), getApplicationContext());
 
            if (obj != null) {
-               Donation.load((LinkedList<Donation>) (((Persistable) obj).getPersistentData()));
+               Donation.load((((Persistable) obj).getPersistentData()));
 
                Log.d("Welcome_Activity", "Donation persistent data loaded.");
            } else {

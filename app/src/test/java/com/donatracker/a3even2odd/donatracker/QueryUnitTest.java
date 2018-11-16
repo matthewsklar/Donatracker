@@ -67,14 +67,14 @@ public class QueryUnitTest {
             expected3.add(queryable22);
 
 
-        Query query11 = new Query();
+        Query<Queryable2> query11 = new Query<>();
         assertEquals((List)expected1, query11.query(data1, query1));
         assertEquals(query11.query(data2, query1), (List)expected2);
         assertEquals(query11.query(data3, query1), (List)expected3);
     }
 
     class Queryable2 implements Queryable {
-        List<String> queryList;
+        final List<String> queryList;
         Queryable2(List<String> list) {
             queryList = list;
         }
