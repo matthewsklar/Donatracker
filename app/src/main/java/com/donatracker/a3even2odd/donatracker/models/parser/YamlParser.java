@@ -26,6 +26,7 @@ public class YamlParser extends Parser {
 
     /**
      * Parse the file into a data class.
+     * @return a list of floats.
      */
     //@Override
     public List<Float> Parse() {

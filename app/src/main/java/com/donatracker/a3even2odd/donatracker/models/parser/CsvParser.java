@@ -24,6 +24,7 @@ public final class CsvParser extends Parser {
 
     /**
      * Parse the file into a data class.
+     * @return a list of strings.
      */
     //@Override
     public List<String[]> Parse() {
