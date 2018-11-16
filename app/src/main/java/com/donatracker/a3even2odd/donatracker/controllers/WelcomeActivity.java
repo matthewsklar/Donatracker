@@ -19,7 +19,6 @@ import com.donatracker.a3even2odd.donatracker.models.user.User;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
