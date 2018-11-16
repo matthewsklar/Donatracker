@@ -1,6 +1,7 @@
-package com.donatracker.a3even2odd.donatracker.models.donation;
+package com.donatracker.a3even2odd.donatracker;
 
 
+import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import org.junit.Test;

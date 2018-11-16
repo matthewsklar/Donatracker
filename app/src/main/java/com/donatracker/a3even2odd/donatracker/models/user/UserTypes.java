@@ -16,11 +16,11 @@ public enum UserTypes {
         this.userType = userType;
     }
 
-//    /**
-//     * Getter for UserType.
-//     * @return String version of UserType
-//     */
-//    public String getUserType() {
-//        return userType;
-//    }
+    /**
+     * Getter for UserType.
+     * @return String version of UserType
+     */
+    public String getUserType() {
+        return userType;
+    }
 }
