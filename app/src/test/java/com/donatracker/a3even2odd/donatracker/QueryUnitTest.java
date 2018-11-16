@@ -78,6 +78,8 @@ public class QueryUnitTest {
         Queryable2(List<String> list) {
             queryList = list;
         }
+
+        @Override
         public List<String> queryData(){
             return this.queryList;
         }

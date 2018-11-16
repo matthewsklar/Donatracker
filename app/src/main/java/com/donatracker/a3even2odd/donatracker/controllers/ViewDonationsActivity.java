@@ -202,7 +202,7 @@ public class ViewDonationsActivity extends Activity {
 
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View view;
+            final View view;
             final TextView idView;
             final TextView contentView;
             Donation donation;

@@ -132,14 +132,14 @@ public class Locations implements Serializable {
         return parseInt(data[0]);
     }
 
-    /**
-     * getter for inventory
-     *
-     * @return inventory of location
-     */
-    public List<Donation> getInventory() {
-        return inventory;
-    }
+//    /**
+//     * getter for inventory
+//     *
+//     * @return inventory of location
+//     */
+//    public List<Donation> getInventory() {
+//        return inventory;
+//    }
 
     /**
      * location constructor

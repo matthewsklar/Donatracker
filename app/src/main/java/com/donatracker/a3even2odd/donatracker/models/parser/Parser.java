@@ -22,14 +22,14 @@ public abstract class Parser<E> {
     private InputStream inputStream;
 
     /* Getters and Setters */
-    /**
-     * Getter for loc.
-     *
-     * @return getLoc
-     */
-    String getLoc() {
-        return loc;
-    }
+//    /**
+//     * Getter for loc.
+//     *
+//     * @return getLoc
+//     */
+//    String getLoc() {
+//        return loc;
+//    }
 
     /**
      * Getter for inputStream.
@@ -60,9 +60,9 @@ public abstract class Parser<E> {
         this.inputStream = inputStream;
     }
 
-    /**
-     * Parse the file into a data class.
-     * @return a list of E
-     */
-    public abstract List<E> Parse();
+//    /**
+//     * Parse the file into a data class.
+//     * @return a list of E
+//     */
+//    public abstract List<E> Parse();
 }
