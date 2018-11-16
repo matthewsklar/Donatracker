@@ -6,6 +6,7 @@ import com.donatracker.a3even2odd.donatracker.models.query.Queryable;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -54,15 +55,15 @@ public class QueryUnitTest {
             query1.add(queryable22);
             query1.add(queryable23);
 
-        List<Queryable2> expected1 = new ArrayList<>();
+        Collection<Queryable2> expected1 = new ArrayList<>();
             expected1.add(queryable22);
 
-        List<Queryable2> expected2 = new ArrayList<>();
+        Collection<Queryable2> expected2 = new ArrayList<>();
             expected2.add(queryable21);
             expected2.add(queryable22);
             expected2.add(queryable23);
 
-        List<Queryable2> expected3 = new ArrayList<>();
+        Collection<Queryable2> expected3 = new ArrayList<>();
             expected3.add(queryable22);
 
 
@@ -78,10 +79,6 @@ public class QueryUnitTest {
             queryList = list;
         }
         public List<String> queryData(){
-            List<String> queryList = new ArrayList<>();
-            queryList.add("location");
-            queryList.add("category");
-            queryList.add("donation");
             return this.queryList;
         }
     }

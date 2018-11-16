@@ -35,7 +35,7 @@ public class Query<E extends Queryable> {
                 for (int j = 0; j < data.size(); j++) {
                     String query = data.get(j);
 
-                    if (!query.equals("")) {
+                    if (!"".equals(query)) {
                         if (e.queryData().get(j).toLowerCase()
                                 .contains(query.toLowerCase())) {
                             meetsReq = true;
@@ -62,7 +62,7 @@ public class Query<E extends Queryable> {
      */
     private boolean emptyQuery(Iterable<String> data) {
         for (String s : data) {
-            if (!s.equals("")) {
+            if (!"".equals(s)) {
                 return false;
             }
         }

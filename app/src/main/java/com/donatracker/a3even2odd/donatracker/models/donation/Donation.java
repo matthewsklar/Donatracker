@@ -41,7 +41,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
     /**
      * Location of the persistent save file containing donation data.
      */
-    private static String saveFile = "donation_data.bin";
+    private static final String SAVE_FILE = "donation_data.bin";
 
     /**
      * Local copy of donations.
@@ -109,7 +109,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
      * @return saveFile
      */
     public static String getSaveFile() {
-        return saveFile;
+        return SAVE_FILE;
     }
 
     /**
