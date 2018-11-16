@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.donatracker.a3even2odd.donatracker.R;;
+import com.donatracker.a3even2odd.donatracker.R;
 
 /**
  * Activity to view the details of a donation.

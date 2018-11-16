@@ -123,7 +123,7 @@ public class ViewDonationsActivity extends Activity {
 
         TextView empty = findViewById(R.id.empty);
 
-        if (queriedDonations.size() == 0) {
+        if (queriedDonations.isEmpty()) {
             empty.setText(R.string.no_matching_donations);
             empty.setVisibility(View.VISIBLE);
         } else {

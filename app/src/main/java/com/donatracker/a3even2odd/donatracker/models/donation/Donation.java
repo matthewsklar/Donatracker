@@ -323,7 +323,7 @@ public class Donation implements Serializable, Queryable, Persistable<Donation> 
         donations.getLast().donationsCopy.clear();
         donationsCopy.addAll(donations);
 
-        location.addInventory(this);
+//        location.addInventory(this);
     }
 
     @Override

@@ -20,23 +20,23 @@ public class Locations implements Serializable {
     /**
      * Name of the location
      */
-    private String name;
+    private final String name;
     /**
      * Latitude of location
      */
-    private double latitude;
+    private final double latitude;
     /**
      * Longitude of location
      */
-    private double longitude;
+    private final double longitude;
     /**
      * The phone number of the location
      */
-    private String phone;
+    private final String phone;
     /**
      * Type of Location
      */
-    private String type;
+    private final String type;
     /**
      * an array of the location details
      * data[0]:  key
@@ -51,7 +51,7 @@ public class Locations implements Serializable {
      * data[9]:  phone
      * data[10]: website
      */
-    private String[] data;
+    private final String[] data;
 
     /**
      * list of locations
@@ -182,14 +182,14 @@ public class Locations implements Serializable {
         return null;
     }
 
-    /**
-     * Method which adds a donation to a locations inventory
-     * @param d is a donation
-     * @return true if donation was successfully added to inventory
-     */
-    public boolean addInventory(Donation d) {
-        return inventory.add(d);
-    }
+//    /**
+//     * Method which adds a donation to a locations inventory
+//     * @param d is a donation
+//     * @return true if donation was successfully added to inventory
+//     */
+//    public boolean addInventory(Donation d) {
+//        return inventory.add(d);
+//    }
 
     /**
      * formats address from data

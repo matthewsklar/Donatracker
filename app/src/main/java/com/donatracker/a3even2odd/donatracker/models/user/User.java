@@ -30,15 +30,15 @@ public class User implements Serializable/*, Persistable<User> */ {
     /**
      * the Id of the user. currently saved as the username
      */
-    private String accountId;
+    private final String accountId;
     /**
      * the password of the user
      */
-    private String password;
+    private final String password;
     /**
      * user type
      */
-    private UserTypes accountType;
+    private final UserTypes accountType;
 
     /**
      * Getter for users HashMap

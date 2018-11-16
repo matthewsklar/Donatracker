@@ -13,15 +13,15 @@ public class Register {
     /**
      * The registrant's username
      */
-    private String username;
+    private final String username;
     /**
      * the registrant's password
      */
-    private String password;
+    private final String password;
     /**
      * the registrant's password verification
      */
-    private String passwordCheck;
+    private final String passwordCheck;
 
     /**
      * getter method for Users information
