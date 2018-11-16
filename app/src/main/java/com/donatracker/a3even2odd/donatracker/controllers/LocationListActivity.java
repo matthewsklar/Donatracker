@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.donatracker.a3even2odd.donatracker.R;
-import com.donatracker.a3even2odd.donatracker.models.donation.Donation;
 import com.donatracker.a3even2odd.donatracker.models.location.Locations;
 
 import java.util.List;

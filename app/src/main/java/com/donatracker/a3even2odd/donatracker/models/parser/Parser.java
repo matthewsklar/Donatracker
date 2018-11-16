@@ -1,7 +1,6 @@
 package com.donatracker.a3even2odd.donatracker.models.parser;
 
 import java.io.InputStream;
-import java.util.List;
 
 /**
  * Abstract class for parsers.
