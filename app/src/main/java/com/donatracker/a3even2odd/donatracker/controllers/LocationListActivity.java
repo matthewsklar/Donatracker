@@ -69,7 +69,7 @@ public class LocationListActivity extends AppCompatActivity {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            //gets view for viewholder
+            //gets view for ViewHolder
             Log.d("location_data", "CreateViewHolder ran");
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.location_list_content, parent, false);
@@ -80,7 +80,7 @@ public class LocationListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
             Log.d("location_data", "onBindViewHolder ran " + position);
-            //sets view for viewholder
+            //sets view for ViewHolder
             holder.location = locList.get(position);
 
             holder.idView.setText(getString(R.string.number_list, position + 1));

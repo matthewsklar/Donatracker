@@ -31,7 +31,9 @@ public class CategoryUnitTest {
                 }
             }
 
-            if (!copy) break;
+            if (!copy) {
+                break;
+            }
         }
 
         String newCatName = Integer.toString(i);

@@ -25,7 +25,9 @@ public class Query<E extends Queryable> {
     public List<E> query(List<String> data, List<E> queryList) {
         LinkedList<E> queriedList = new LinkedList<>();
 
-        if (emptyQuery(data)) queriedList.addAll(queryList);
+        if (emptyQuery(data)) {
+            queriedList.addAll(queryList);
+        }
         else {
             for (int i = 0; i < queryList.size(); i++) {
                 E e = queryList.get(i);
@@ -60,7 +62,9 @@ public class Query<E extends Queryable> {
      */
     private boolean emptyQuery(Iterable<String> data) {
         for (String s : data) {
-            if (!s.equals("")) return false;
+            if (!s.equals("")) {
+                return false;
+            }
         }
 
         return true;
